@@ -7,19 +7,27 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint:fix": "eslint --ext .js,.vue --ignore-path .gitignore . --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "jotai": "^2.12.2",
     "nuxt": "^2.16.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@nuxt/types": "^2.18.1",
     "@nuxt/typescript-build": "^3.0.2",
+    "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@types/node": "^22.13.10",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-nuxt": "^4.0.0",
     "typescript": "^5.8.2"
   }
 }
