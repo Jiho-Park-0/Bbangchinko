@@ -1,0 +1,25 @@
+{
+  "name": "bbangchinko",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "nuxt": "^2.16.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@nuxt/typescript-build": "^3.0.2",
+    "@types/node": "^22.13.10",
+    "typescript": "^5.8.2"
+  }
+}
