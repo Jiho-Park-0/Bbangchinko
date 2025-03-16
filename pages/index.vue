@@ -3,6 +3,7 @@
     <h1>{{ message }}</h1>
     <p>{{ reversedMessage }}</p>
     <button @click="updateMessage">Update Message</button>
+    <nuxt-link to="/test">test</nuxt-link>
   </div>
 </template>
 
