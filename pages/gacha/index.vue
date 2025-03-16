@@ -1,6 +1,6 @@
 <template>
   <div>
-    설명 페이지
+    뽑기 페이지
     <p>{{ url }}</p>
     <div v-if="allData && allData.length">
       <div v-for="(item, index) in allData" :key="index">

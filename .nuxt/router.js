@@ -5,7 +5,7 @@ import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
 const _52f02efb = () => interopDefault(import('..\\pages\\explain\\index.vue' /* webpackChunkName: "pages/explain/index" */))
-const _e789b988 = () => interopDefault(import('..\\pages\\getcha\\index.vue' /* webpackChunkName: "pages/getcha/index" */))
+const _768eeb90 = () => interopDefault(import('..\\pages\\gacha\\index.vue' /* webpackChunkName: "pages/gacha/index" */))
 const _0ca11002 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages/index" */))
 
 const emptyFn = () => {}
@@ -24,9 +24,9 @@ export const routerOptions = {
     component: _52f02efb,
     name: "explain"
   }, {
-    path: "/getcha",
-    component: _e789b988,
-    name: "getcha"
+    path: "/gacha",
+    component: _768eeb90,
+    name: "gacha"
   }, {
     path: "/",
     component: _0ca11002,

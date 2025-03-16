@@ -5,7 +5,7 @@
       <nav>
         <ul class="nav-links">
           <li><NuxtLink to="/" class="nav-item">메인</NuxtLink></li>
-          <li><NuxtLink to="/getcha" class="nav-item">뽑기</NuxtLink></li>
+          <li><NuxtLink to="/gacha" class="nav-item">뽑기</NuxtLink></li>
           <li><NuxtLink to="/explain" class="nav-item">설명서</NuxtLink></li>
         </ul>
       </nav>
@@ -48,7 +48,7 @@ export default {
 }
 
 .nav-item {
-  color: 42b983;
+  color: #42b983;
   text-decoration: none;
   transition: color 0.3s;
 }
