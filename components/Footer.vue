@@ -4,7 +4,7 @@
       <p>&copy; {{ new Date().getFullYear() }} 빵칭코. All rights reserved.</p>
       <p class="contact">
         문의:
-        <a href="bas.limbus@gmail.com" class="email">bas.limbus@gmail.com</a>
+        <span class="email">bas.limbus@gmail.com</span>
       </p>
     </div>
   </footer>
@@ -34,9 +34,5 @@ export default {
 .email {
   color: #60a5fa;
   text-decoration: none;
-}
-
-.email:hover {
-  text-decoration: underline;
 }
 </style>
