@@ -30,8 +30,6 @@ export default {
       // https://limbus.store/dictionary/identity?grade=1&minSpeed=1&maxSpeed=9&minWeight=1&maxWeight=9
       const url = `${baseUrl}/dictionary/identity?grade=1`;
 
-      console.log("API 요청 URL:", url);
-
       const response = await fetch(url);
       const data = await response.json();
       return {

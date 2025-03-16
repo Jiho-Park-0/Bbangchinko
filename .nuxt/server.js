@@ -255,16 +255,16 @@ const render404Page = () => {
 
     // Call asyncData(context)
     if (Component.options.asyncData && typeof Component.options.asyncData === 'function') {
-        const promise = promisify(Component.options.asyncData, app.context)
-        promise.then((asyncDataResult) => {
+      const promise = promisify(Component.options.asyncData, app.context)
+        .then((asyncDataResult) => {
           ssrContext.asyncData[Component.cid] = asyncDataResult
           applyAsyncData(Component)
           return asyncDataResult
         })
-        promises.push(promise)
-      } else {
-        promises.push(null)
-      }
+      promises.push(promise)
+    } else {
+      promises.push(null)
+    }
 
     // Call fetch(context)
     if (Component.options.fetch && Component.options.fetch.length) {
