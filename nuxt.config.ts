@@ -5,17 +5,25 @@ export default {
   publicRuntimeConfig: {
     baseURL: process.env.BASE_URL,
   },
-  optimizedImages: {
-    optimizeImages: true,
-    optimizeImagesInDev: false, // 프로덕션 빌드 시 최적화 적용
-    webp: {
-      quality: 5, // 원하는 품질로 설정
+  image: {
+    // 기본 provider는 'static'입니다.
+    // provider: 'static',
+    // 원격 이미지를 사용할 경우 whitelist에 도메인을 추가합니다.
+    domains: [
+      "https://limbus-image-bucket.s3.amazonaws.com",
+      "https://limbus-image-bucket.s3.ap-northeast-2.amazonaws.com",
+    ],
+    // 프리셋을 사용하면 여러 곳에서 공통 설정을 적용할 수 있습니다.
+    presets: {
+      low_quality: {
+        modifiers: {
+          quality: 70,
+          format: "webp",
+        },
+      },
     },
-    // LQIP 옵션 (낮은 품질의 플레이스홀더 생성)
-    inlineImageLimit: 0, // 인라인 대신 파일로 처리
-    defaultImageLoader: "img-loader",
   },
-  plugins: ["~/plugins/vue-lazyload.ts"],
+  plugins: [{ src: "~/plugins/vue-lazyload", mode: "client" }],
   render: {
     static: {
       maxAge: "1d", // 1일 동안 캐싱

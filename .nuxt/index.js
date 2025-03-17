@@ -12,7 +12,8 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 /* Plugins */
 
-import nuxt_plugin_vuelazyload_d07c1ad4 from 'nuxt_plugin_vuelazyload_d07c1ad4' // Source: ..\\plugins\\vue-lazyload.ts (mode: 'all')
+import nuxt_plugin_image_0fb9328e from 'nuxt_plugin_image_0fb9328e' // Source: .\\image.js (mode: 'all')
+import nuxt_plugin_vuelazyload_211b2937 from 'nuxt_plugin_vuelazyload_211b2937' // Source: ..\\plugins\\vue-lazyload (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -180,8 +181,12 @@ async function createApp(ssrContext, config = {}) {
   }
   // Plugin execution
 
-  if (typeof nuxt_plugin_vuelazyload_d07c1ad4 === 'function') {
-    await nuxt_plugin_vuelazyload_d07c1ad4(app.context, inject)
+  if (typeof nuxt_plugin_image_0fb9328e === 'function') {
+    await nuxt_plugin_image_0fb9328e(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_vuelazyload_211b2937 === 'function') {
+    await nuxt_plugin_vuelazyload_211b2937(app.context, inject)
   }
 
   // Lock enablePreview in context

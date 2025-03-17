@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>뽑기 페이지</h1>
-    <p>{{ url }}</p>
+
     <!-- 뽑기 컨트롤 컴포넌트 -->
     <GachaControls @drawSingle="handleSingleDraw" @drawTen="handleTenDraw" />
     <!-- 뽑기 결과 표시 컴포넌트 -->
@@ -40,10 +40,10 @@ export default Vue.extend({
       egoPickupIds: [96],
       // 제외할 데이터 id 배열 (빈 배열 또는 특정 id 지정)
       // 발푸밤 인격 13, 34, 83, 84, 103, 119, 120, 131, 132
-      // 이벤트 인격 116, 117, 110, 111, 80, 53, 41, 74, 90
+      // 이벤트 인격 116, 117, 110, 111, 80, 53, 41, 74, 90, 17, 65
       identityExcludedIds: [
         13, 34, 83, 84, 103, 119, 120, 131, 132, 116, 117, 110, 111, 80, 53, 41,
-        74, 90,
+        74, 90, 17, 65,
       ] as number[],
       // 포함시킬 ego 데이터 id 배열 (이 목록에 포함된 ego 데이터만 사용)
       egoIncludedIds: [
