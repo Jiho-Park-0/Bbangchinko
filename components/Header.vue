@@ -23,15 +23,15 @@ export default {
 .header {
   background: #f9fafb;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 1920px;
 }
 
 .container {
-  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px 0 20px;
+  padding: 0 10%;
 }
 
 .title {

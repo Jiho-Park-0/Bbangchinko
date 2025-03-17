@@ -1,8 +1,10 @@
 <template>
   <div>
     <Header />
-    <main class="container mx-auto p-4">
-      <Nuxt />
+    <main>
+      <div class="content-wrapper">
+        <Nuxt />
+      </div>
     </main>
     <Footer />
   </div>
@@ -19,3 +21,12 @@ export default {
   },
 };
 </script>
+
+<style>
+/* 오직 main 내부의 content-wrapper에만 max-width 적용 */
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+</style>
