@@ -1,7 +1,7 @@
 <template>
   <div class="controls">
-    <button @click="$emit('drawSingle')">1회 뽑기</button>
-    <button @click="$emit('drawTen')">10회 뽑기</button>
+    <button @click="$emit('drawSingle')">1회 추출</button>
+    <button @click="$emit('drawTen')">10회 추출</button>
   </div>
 </template>
 

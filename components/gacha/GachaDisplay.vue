@@ -1,8 +1,16 @@
 <template>
   <div v-if="items && items.length">
     <div class="extraction">
-      <div v-for="(item, index) in items" :key="index">
-        <span class="card" :class="getGradeClass(item)">
+      <div
+        v-for="(item, index) in items"
+        :key="`${item.id}-${drawCount}-${index}`"
+      >
+        <a
+          :href="getItemLink(item)"
+          class="card"
+          :class="getGradeClass(item)"
+          target="_blank"
+        >
           <nuxt-img
             preset="low_quality"
             class="image"
@@ -13,7 +21,7 @@
             width="200"
             height="120"
           />
-        </span>
+        </a>
       </div>
     </div>
   </div>
@@ -30,10 +38,13 @@ export default Vue.extend({
       type: Array as () => DataItem[],
       default: () => [],
     },
+    drawCount: {
+      type: Number,
+      default: 0,
+    },
   },
   methods: {
     getGradeClass(item: DataItem) {
-      // grade가 number인지 확인 후, 1,2,3에 따라 클래스 부여
       if (typeof item.grade === "number") {
         if (item.grade === 1) return "grade-1";
         if (item.grade === 2) return "grade-2";
@@ -42,6 +53,11 @@ export default Vue.extend({
         return "ego";
       }
       return "";
+    },
+    getItemLink(item: DataItem) {
+      return typeof item.grade === "number"
+        ? `https://baslimbus.info/identity/${item.id}`
+        : `https://baslimbus.info/ego/${item.id}`;
     },
   },
 });

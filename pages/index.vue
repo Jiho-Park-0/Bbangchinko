@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h1>{{ message }}</h1>
     <p>{{ reversedMessage }}</p>
     <button @click="updateMessage">Update Message</button>
@@ -30,6 +30,21 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  text-align: center;
+}
+
 h1 {
   color: #42b983;
 }

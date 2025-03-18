@@ -1,11 +1,12 @@
 <template>
   <div>
     <h1>뽑기 페이지</h1>
+    <div>횟수: {{ drawCount }}</div>
 
     <!-- 뽑기 컨트롤 컴포넌트 -->
     <GachaControls @drawSingle="handleSingleDraw" @drawTen="handleTenDraw" />
     <!-- 뽑기 결과 표시 컴포넌트 -->
-    <GachaDisplay :items="randomItems" />
+    <GachaDisplay :items="randomItems" :drawCount="drawCount" />
   </div>
 </template>
 
@@ -35,6 +36,7 @@ export default Vue.extend({
       url: "",
       allData: [] as DataItem[],
       randomItems: [] as DataItem[],
+      drawCount: 0, // 뽑기 횟수를 저장할 변수 추가
       // 픽업 id 설정 (빈 배열도 가능, 1개 이상 지정 가능)
       identityPickupIds: [138, 137],
       egoPickupIds: [96],
@@ -105,6 +107,7 @@ export default Vue.extend({
       );
       console.log({ id: result.id, grade: result.grade });
       this.randomItems = [result];
+      this.drawCount++; // 뽑기 횟수 증가
     },
     handleTenDraw() {
       const filteredData = this.allData.filter((item: DataItem) => {
@@ -124,8 +127,19 @@ export default Vue.extend({
         this.identityPickupIds,
         this.egoPickupIds
       );
+
+      // 초기화 및 뽑기 횟수 증가
+      this.randomItems = [];
+      this.drawCount += 10;
+
+      // 0.5초 간격으로 아이템 순차적으로 추가
+      results.forEach((item, index) => {
+        setTimeout(() => {
+          this.randomItems.push(item);
+        }, 300 * index);
+      });
+
       console.log(results.map((item) => ({ id: item.id, grade: item.grade })));
-      this.randomItems = results;
     },
   },
 });
