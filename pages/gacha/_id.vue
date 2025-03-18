@@ -6,18 +6,19 @@
     <ul>
       <li>Identity: {{ currentIdentityPickups.join(", ") || "없음" }}</li>
       <li>EGO: {{ currentEgoPickups.join(", ") || "없음" }}</li>
-      <li>이상[理想]: {{ currentAbnormality }}</li>
     </ul>
-    <div class="abnormality-controls">
-      <button @click="resetAbnormalityById(id)">초기화</button>
-      <span>뽑기 횟수: {{ currentAbnormality }}</span>
+    <div class="Ideal-controls">
+      <button @click="resetIdealById(id)">초기화</button>
+      <span>이상[理想]: {{ currentIdeal }}</span>
     </div>
     <div class="description">
       <p>픽업 확률</p>
       <p class="percentage">인격: 1.45% / 픽업수</p>
       <p class="percentage">에고: 0.65% / 픽업수</p>
 
-      <p>10회추출은 2성 하나가 확정입니다.</p>
+      <p>
+        10회추출은 2성 하나가 확정입니다. 이상[理想]은 1시간마다 초기화됩니다.
+      </p>
       <p class="percentage">
         1회 추출 확률: EGO 1.3% / 3성 2.9% / 2성 12.8% / 1성 83%
       </p>
@@ -29,7 +30,7 @@
     <!-- 뽑기 컨트롤 컴포넌트 -->
     <GachaControls @drawSingle="handleSingleDraw" @drawTen="handleTenDraw" />
     <!-- 뽑기 결과 표시 컴포넌트 -->
-    <GachaDisplay :items="randomItems" :drawCount="currentAbnormality" />
+    <GachaDisplay :items="randomItems" :drawCount="currentIdeal" />
   </div>
 </template>
 
@@ -73,17 +74,18 @@ export default Vue.extend({
     };
   },
   computed: {
-    ...mapState(["pickupIds"]),
+    ...mapState(["idealValues", "pickupConfig"]),
     currentIdentityPickups(): number[] {
-      // 현재 id에 해당하는 identity 픽업 배열 반환
-      return this.$store.state.pickupIds?.[this.id]?.identity || [];
+      // 하드코딩된 픽업 설정에서 가져오기
+      return this.$store.state.pickupConfig?.[this.id]?.identity || [];
     },
     currentEgoPickups(): number[] {
-      // 현재 id에 해당하는 ego 픽업 배열 반환
-      return this.$store.state.pickupIds?.[this.id]?.ego || [];
+      // 하드코딩된 픽업 설정에서 가져오기
+      return this.$store.state.pickupConfig?.[this.id]?.ego || [];
     },
-    currentAbnormality(): number {
-      return this.$store.state.pickupIds?.[this.id]?.abnormality || 0;
+    currentIdeal(): number {
+      // Ideal 값은 별도 객체에서 가져오기
+      return this.$store.state.idealValues?.[this.id] || 0;
     },
   },
 
@@ -124,7 +126,7 @@ export default Vue.extend({
     this.$store.dispatch("checkExpiration");
   },
   methods: {
-    ...mapMutations(["increment", "incrementTen", "resetAbnormalityById"]),
+    ...mapMutations(["increment", "incrementTen", "resetIdealById"]),
     handleSingleDraw() {
       // identity: 제외할 id가 있으면 제거, ego: 반드시 포함해야 하는 id 목록에 포함된 데이터만 사용
       const filteredData = this.allData.filter((item: DataItem) => {
@@ -150,7 +152,7 @@ export default Vue.extend({
 
       console.log({ id: result.id, grade: result.grade });
       this.randomItems = [result];
-      this.increment(this.id); // 현재 ID의 abnormality 증가
+      this.increment(this.id); // 현재 ID의 Ideal 증가
     },
     handleTenDraw() {
       const filteredData = this.allData.filter((item: DataItem) => {
@@ -175,7 +177,7 @@ export default Vue.extend({
 
       // 초기화 및 뽑기 횟수 증가
       this.randomItems = [];
-      this.incrementTen(this.id); // 현재 ID의 abnormality 10 증가
+      this.incrementTen(this.id); // 현재 ID의 Ideal 10 증가
 
       // 0.5초 간격으로 아이템 순차적으로 추가
       results.forEach((item, index) => {
@@ -220,14 +222,14 @@ li {
   margin-bottom: 5px;
 }
 
-.abnormality-controls {
+.Ideal-controls {
   margin: 10px 0;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.abnormality-controls button {
+.Ideal-controls button {
   padding: 5px 10px;
   background-color: #ff6b6b;
   color: white;
@@ -236,7 +238,7 @@ li {
   cursor: pointer;
 }
 
-.abnormality-controls button:hover {
+.Ideal-controls button:hover {
   background-color: #ee5253;
 }
 </style>
