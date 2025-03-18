@@ -1,7 +1,11 @@
 <template>
   <header class="header">
     <div class="container">
-      <h1 class="title">빵칭코</h1>
+      <h1 class="title">
+        <NuxtLink to="/" class="nav-item" @click.native="closeMenu"
+          >빵칭코</NuxtLink
+        >
+      </h1>
 
       <!-- 햄버거 메뉴 버튼 -->
       <button

@@ -1,6 +1,16 @@
 <template>
   <div>
     <h1>뽑기 페이지</h1>
+    <div class="description">
+      <p>픽업에 대한 뽑기 페이지 입니다.</p>
+      <p class="percentage">
+        1회 추출 확률: EGO 1.3% 3성 2.9% 2성 12.8% 1성 83%
+      </p>
+      <p>10회추출은 2성 하나가 확정입니다.</p>
+      <p class="percentage">
+        10회 추출 10번째 확률: EGO 1.3% 3성 2.9% 2성 95.8%
+      </p>
+    </div>
     <div>횟수: {{ drawCount }}</div>
 
     <!-- 뽑기 컨트롤 컴포넌트 -->
@@ -144,3 +154,24 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style scoped>
+.description {
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f0f4f8;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.percentage {
+  font-style: italic;
+}
+
+p {
+  margin: 0 0 10px;
+}
+</style>
