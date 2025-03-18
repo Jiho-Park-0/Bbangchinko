@@ -23,7 +23,10 @@ export default {
       },
     },
   },
-  plugins: [{ src: "~/plugins/vue-lazyload", mode: "client" }],
+  plugins: [
+    { src: "~/plugins/vue-lazyload", mode: "client" },
+    { src: "~/plugins/vuex-persistedstate.ts", ssr: false },
+  ],
   render: {
     static: {
       maxAge: "1d", // 1일 동안 캐싱

@@ -1,10 +1,7 @@
 <template>
   <div v-if="items && items.length">
     <div class="extraction">
-      <div
-        v-for="(item, index) in items"
-        :key="`${item.id}-${drawCount}-${index}`"
-      >
+      <div v-for="(item, index) in items" :key="`${item.id}-${index}`">
         <a
           :href="getItemLink(item)"
           class="card"

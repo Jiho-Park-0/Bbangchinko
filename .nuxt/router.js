@@ -7,6 +7,7 @@ import scrollBehavior from './router.scrollBehavior.js'
 const _52f02efb = () => interopDefault(import('..\\pages\\explain\\index.vue' /* webpackChunkName: "pages/explain/index" */))
 const _768eeb90 = () => interopDefault(import('..\\pages\\gacha\\index.vue' /* webpackChunkName: "pages/gacha/index" */))
 const _0ca11002 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages/index" */))
+const _7d0291f8 = () => interopDefault(import('..\\pages\\gacha\\_id.vue' /* webpackChunkName: "pages/gacha/_id" */))
 
 const emptyFn = () => {}
 
@@ -31,6 +32,10 @@ export const routerOptions = {
     path: "/",
     component: _0ca11002,
     name: "index"
+  }, {
+    path: "/gacha/:id",
+    component: _7d0291f8,
+    name: "gacha-id"
   }],
 
   fallback: false

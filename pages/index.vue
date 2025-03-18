@@ -1,9 +1,8 @@
 <template>
   <div class="container">
-    <h1>{{ message }}</h1>
-    <p>{{ reversedMessage }}</p>
-    <button @click="updateMessage">Update Message</button>
-    <nuxt-link to="/test">test</nuxt-link>
+    <div>
+      <nuxt-link :to="`/gacha/${page1}`">다이나믹라우팅</nuxt-link>
+    </div>
   </div>
 </template>
 
@@ -13,18 +12,8 @@ import Vue from "vue";
 export default Vue.extend({
   data() {
     return {
-      message: "Hello, Nuxt 2 + TypeScript!",
+      page1: "불그렉 동섕돈",
     };
-  },
-  computed: {
-    reversedMessage(): string {
-      return this.message.split("").reverse().join("");
-    },
-  },
-  methods: {
-    updateMessage(): void {
-      this.message = "Updated!";
-    },
   },
 });
 </script>

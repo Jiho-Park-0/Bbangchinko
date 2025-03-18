@@ -3,21 +3,24 @@
     "name": "explain",
     "path": "/explain",
     "component": "C:\\\\Users\\\\Jiho Park\\\\Github\\\\bbangchinko\\\\pages\\\\explain\\\\index.vue",
-    "chunkName": "pages/explain/index",
-    "_name": "_52f02efb"
+    "chunkName": "pages/explain/index"
   },
   {
     "name": "gacha",
     "path": "/gacha",
     "component": "C:\\\\Users\\\\Jiho Park\\\\Github\\\\bbangchinko\\\\pages\\\\gacha\\\\index.vue",
-    "chunkName": "pages/gacha/index",
-    "_name": "_768eeb90"
+    "chunkName": "pages/gacha/index"
   },
   {
     "name": "index",
     "path": "/",
     "component": "C:\\\\Users\\\\Jiho Park\\\\Github\\\\bbangchinko\\\\pages\\\\index.vue",
-    "chunkName": "pages/index",
-    "_name": "_0ca11002"
+    "chunkName": "pages/index"
+  },
+  {
+    "name": "gacha-id",
+    "path": "/gacha/:id",
+    "component": "C:\\\\Users\\\\Jiho Park\\\\Github\\\\bbangchinko\\\\pages\\\\gacha\\\\_id.vue",
+    "chunkName": "pages/gacha/_id"
   }
 ]

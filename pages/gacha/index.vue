@@ -26,6 +26,7 @@ import { Context } from "@nuxt/types";
 import GachaControls from "@/components/gacha/GachaControls.vue";
 import GachaDisplay from "@/components/gacha/GachaDisplay.vue";
 import { drawSingle, drawTen } from "~/utils/gachaLogic";
+import { mapState, mapMutations } from "vuex";
 
 // DataItem 인터페이스: id 추가, grade는 string 또는 number, type으로 identity/ego 구분
 export interface DataItem {
@@ -46,7 +47,6 @@ export default Vue.extend({
       url: "",
       allData: [] as DataItem[],
       randomItems: [] as DataItem[],
-      drawCount: 0, // 뽑기 횟수를 저장할 변수 추가
       // 픽업 id 설정 (빈 배열도 가능, 1개 이상 지정 가능)
       identityPickupIds: [138, 137],
       egoPickupIds: [96],
@@ -64,6 +64,10 @@ export default Vue.extend({
       ] as number[],
     };
   },
+  computed: {
+    ...mapState(["drawCount"]), // 뽑기 횟수를 저장할 변수
+  },
+
   async asyncData({ $config }: Context) {
     try {
       const baseURL = $config.baseURL;
@@ -94,7 +98,11 @@ export default Vue.extend({
       return { allData: [], url: "" };
     }
   },
+  mounted() {
+    this.$store.dispatch("checkExpiration");
+  },
   methods: {
+    ...mapMutations(["increment", "incrementTen"]),
     handleSingleDraw() {
       // identity: 제외할 id가 있으면 제거, ego: 반드시 포함해야 하는 id 목록에 포함된 데이터만 사용
       const filteredData = this.allData.filter((item: DataItem) => {
@@ -117,7 +125,7 @@ export default Vue.extend({
       );
       console.log({ id: result.id, grade: result.grade });
       this.randomItems = [result];
-      this.drawCount++; // 뽑기 횟수 증가
+      this.increment(); // 뽑기 횟수 증가
     },
     handleTenDraw() {
       const filteredData = this.allData.filter((item: DataItem) => {
@@ -140,7 +148,7 @@ export default Vue.extend({
 
       // 초기화 및 뽑기 횟수 증가
       this.randomItems = [];
-      this.drawCount += 10;
+      this.incrementTen();
 
       // 0.5초 간격으로 아이템 순차적으로 추가
       results.forEach((item, index) => {
