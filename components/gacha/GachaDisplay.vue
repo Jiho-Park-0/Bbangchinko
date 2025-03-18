@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { DataItem } from "@/pages/gacha/index.vue";
+import { DataItem } from "@/pages/gacha/_id.vue";
 
 export default Vue.extend({
   name: "GachaDisplay",

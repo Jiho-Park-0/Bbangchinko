@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <div>
-      <nuxt-link :to="`/gacha/${page1}`">다이나믹라우팅</nuxt-link>
+      <nuxt-link :to="`/gacha/${1}`">다이나믹라우팅1</nuxt-link>
+      <nuxt-link :to="`/gacha/${2}`">다이나믹라우팅2</nuxt-link>
+      <nuxt-link :to="`/gacha/${3}`">다이나믹라우팅3</nuxt-link>
     </div>
   </div>
 </template>
@@ -12,7 +14,7 @@ import Vue from "vue";
 export default Vue.extend({
   data() {
     return {
-      page1: "불그렉 동섕돈",
+      page1: 1,
     };
   },
 });
