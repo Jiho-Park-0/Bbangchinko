@@ -1,36 +1,30 @@
 <template>
   <div>
-    <h1>뽑기 페이지</h1>
-    <h1>ID: {{ id }}</h1>
-    <p>현재 픽업 ID:</p>
-    <ul>
-      <li>Identity: {{ currentIdentityPickups.join(", ") || "없음" }}</li>
-      <li>EGO: {{ currentEgoPickups.join(", ") || "없음" }}</li>
-    </ul>
-    <div class="Ideal-controls">
-      <button @click="resetIdealById(id)">초기화</button>
-      <span>이상[理想]: {{ currentIdeal }}</span>
-    </div>
-    <div class="description">
-      <p>픽업 확률</p>
-      <p class="percentage">인격: 1.45% / 픽업수</p>
-      <p class="percentage">에고: 0.65% / 픽업수</p>
+    <PickupInfo
+      :id="id"
+      :identityPickups="currentIdentityPickups"
+      :egoPickups="currentEgoPickups"
+      :identityDetails="identityDetails"
+      :egoDetails="egoDetails"
+    />
 
-      <p>
-        10회추출은 2성 하나가 확정입니다. 이상[理想]은 1시간마다 초기화됩니다.
-      </p>
-      <p class="percentage">
-        1회 추출 확률: EGO 1.3% / 3성 2.9% / 2성 12.8% / 1성 83%
-      </p>
-      <p class="percentage">
-        10회 추출 10번째 확률: EGO 1.3% / 3성 2.9% / 2성 95.8%
-      </p>
-    </div>
+    <IdealControl :id="id" :ideal="currentIdeal" />
 
-    <!-- 뽑기 컨트롤 컴포넌트 -->
-    <GachaControls @drawSingle="handleSingleDraw" @drawTen="handleTenDraw" />
-    <!-- 뽑기 결과 표시 컴포넌트 -->
+    <PickupStats
+      :id="id"
+      :identityCount="pickupIdentityCount"
+      :egoCount="pickupEgoCount"
+    />
+
+    <GachaControls
+      @drawSingle="handleSingleDraw"
+      @drawTen="handleTenDraw"
+      :isDrawing="isDrawing"
+    />
+
     <GachaDisplay :items="randomItems" :drawCount="currentIdeal" />
+
+    <GachaDescription />
   </div>
 </template>
 
@@ -39,72 +33,96 @@ import Vue from "vue";
 import { Context } from "@nuxt/types";
 import GachaControls from "@/components/gacha/GachaControls.vue";
 import GachaDisplay from "@/components/gacha/GachaDisplay.vue";
-import { drawSingle, drawTen } from "~/utils/gachaLogic";
+import PickupInfo from "@/components/gacha/PickupInfo.vue";
+import IdealControl from "@/components/gacha/IdealControl.vue";
+import PickupStats from "@/components/gacha/PickupStats.vue";
+import GachaDescription from "@/components/gacha/GachaDescription.vue";
 import { mapState, mapMutations } from "vuex";
-
-// DataItem 인터페이스: id 추가, grade는 string 또는 number, type으로 identity/ego 구분
-export interface DataItem {
-  id: number;
-  grade: string | number;
-  beforeImage?: string;
-  image?: string;
-  type: "identity" | "ego";
-}
+import GachaHandler from "@/utils/gachaHandler";
+import { DataItem } from "@/types/index";
 
 export default Vue.extend({
   components: {
     GachaControls,
     GachaDisplay,
+    PickupInfo,
+    IdealControl,
+    PickupStats,
+    GachaDescription,
   },
+
   data() {
     return {
       url: "",
       allData: [] as DataItem[],
       randomItems: [] as DataItem[],
-      // 제외할 데이터 id 배열 (빈 배열 또는 특정 id 지정)
       identityExcludedIds: [
         13, 34, 83, 84, 103, 119, 120, 131, 132, 116, 117, 110, 111, 80, 53, 41,
         74, 90, 17, 65,
       ] as number[],
-      // 포함시킬 ego 데이터 id 배열 (이 목록에 포함된 ego 데이터만 사용)
       egoIncludedIds: [
         79, 61, 58, 90, 96, 8, 3, 47, 95, 30, 21, 17, 91, 92, 25, 43, 52, 56, 6,
         60, 46, 63, 80, 83, 35, 11, 65,
       ] as number[],
+      isDrawing: false, // 추출 중인지 여부를 추적할 상태 변수 추가
     };
   },
+
   computed: {
-    ...mapState(["idealValues", "pickupConfig"]),
+    ...mapState(["idealValues", "pickupConfig", "pickupCounts"]),
     currentIdentityPickups(): number[] {
-      // 하드코딩된 픽업 설정에서 가져오기
       return this.$store.state.pickupConfig?.[this.id]?.identity || [];
     },
     currentEgoPickups(): number[] {
-      // 하드코딩된 픽업 설정에서 가져오기
       return this.$store.state.pickupConfig?.[this.id]?.ego || [];
     },
     currentIdeal(): number {
-      // Ideal 값은 별도 객체에서 가져오기
       return this.$store.state.idealValues?.[this.id] || 0;
+    },
+    pickupIdentityCount(): number {
+      return this.$store.state.pickupCounts?.[this.id]?.identity || 0;
+    },
+    pickupEgoCount(): number {
+      return this.$store.state.pickupCounts?.[this.id]?.ego || 0;
+    },
+    // 인격 픽업 상세 정보
+    identityDetails(): DataItem[] {
+      return this.allData.filter(
+        (item) =>
+          item.type === "identity" &&
+          this.currentIdentityPickups.includes(item.id)
+      );
+    },
+    // EGO 픽업 상세 정보
+    egoDetails(): DataItem[] {
+      return this.allData.filter(
+        (item) =>
+          item.type === "ego" && this.currentEgoPickups.includes(item.id)
+      );
+    },
+    gachaHandler(): GachaHandler {
+      return new GachaHandler(
+        this.allData,
+        this.identityExcludedIds,
+        this.egoIncludedIds,
+        this.currentIdentityPickups,
+        this.currentEgoPickups
+      );
     },
   },
 
   async asyncData({ params, $config }: Context) {
     try {
-      // params.id 활용 (기본값 설정)
       const id = params?.id || "1";
-
       const baseURL = $config.baseURL;
       const identityUrl = `${baseURL}/dictionary/identity`;
       const egoUrl = `${baseURL}/dictionary/ego`;
 
-      // 두 API를 병렬 호출
       const [identityResponse, egoResponse] = await Promise.all([
         fetch(identityUrl).then((res) => res.json()),
         fetch(egoUrl).then((res) => res.json()),
       ]);
 
-      // 각 데이터에 type 필드 추가
       const identityData = identityResponse.map((item: any) => ({
         ...item,
         type: "identity" as const,
@@ -122,67 +140,90 @@ export default Vue.extend({
       return { allData: [], url: "", id: params?.id || "1" };
     }
   },
+
   mounted() {
     this.$store.dispatch("checkExpiration");
   },
-  methods: {
-    ...mapMutations(["increment", "incrementTen", "resetIdealById"]),
-    handleSingleDraw() {
-      // identity: 제외할 id가 있으면 제거, ego: 반드시 포함해야 하는 id 목록에 포함된 데이터만 사용
-      const filteredData = this.allData.filter((item: DataItem) => {
-        if (
-          item.type === "identity" &&
-          this.identityExcludedIds.includes(item.id)
-        ) {
-          return false;
-        }
-        if (item.type === "ego" && !this.egoIncludedIds.includes(item.id)) {
-          return false;
-        }
-        return true;
-      });
 
-      // store에서 가져온 현재 픽업 ID 사용
-      const result = drawSingle(
-        filteredData,
-        false,
-        this.currentIdentityPickups,
-        this.currentEgoPickups
-      );
+  methods: {
+    ...mapMutations(["increment", "incrementTen", "incrementPickupCount"]),
+
+    handleSingleDraw() {
+      // 이미 추출 중이면 실행 취소
+      if (this.isDrawing) {
+        return;
+      }
+
+      // 추출 상태 설정
+      this.isDrawing = true;
+
+      // GachaHandler 클래스를 사용하여 뽑기 실행
+      const result = this.gachaHandler.drawSingle();
+
+      // 픽업 아이템인지 확인하고 카운트 증가
+      if (
+        result.type === "identity" &&
+        this.currentIdentityPickups.includes(result.id)
+      ) {
+        this.incrementPickupCount({ id: this.id, type: "identity" });
+      } else if (
+        result.type === "ego" &&
+        this.currentEgoPickups.includes(result.id)
+      ) {
+        this.incrementPickupCount({ id: this.id, type: "ego" });
+      }
 
       console.log({ id: result.id, grade: result.grade });
       this.randomItems = [result];
-      this.increment(this.id); // 현재 ID의 Ideal 증가
+      this.increment(this.id);
+
+      // 단일 추출은 바로 완료 처리
+      this.isDrawing = false;
     },
+
     handleTenDraw() {
-      const filteredData = this.allData.filter((item: DataItem) => {
+      // 이미 추출 중이면 실행 취소
+      if (this.isDrawing) {
+        return;
+      }
+
+      // 추출 상태 설정
+      this.isDrawing = true;
+
+      // GachaHandler 클래스를 사용하여 10연속 뽑기 실행
+      const results = this.gachaHandler.drawTen();
+
+      // 각 결과 아이템에 대해 픽업 여부 확인
+      results.forEach((item) => {
         if (
           item.type === "identity" &&
-          this.identityExcludedIds.includes(item.id)
+          this.currentIdentityPickups.includes(item.id)
         ) {
-          return false;
+          this.incrementPickupCount({ id: this.id, type: "identity" });
+        } else if (
+          item.type === "ego" &&
+          this.currentEgoPickups.includes(item.id)
+        ) {
+          this.incrementPickupCount({ id: this.id, type: "ego" });
         }
-        if (item.type === "ego" && !this.egoIncludedIds.includes(item.id)) {
-          return false;
-        }
-        return true;
       });
 
-      // store에서 가져온 현재 픽업 ID 사용
-      const results = drawTen(
-        filteredData,
-        this.currentIdentityPickups,
-        this.currentEgoPickups
-      );
-
-      // 초기화 및 뽑기 횟수 증가
+      // 결과 표시 및 카운터 증가
       this.randomItems = [];
-      this.incrementTen(this.id); // 현재 ID의 Ideal 10 증가
+      this.incrementTen(this.id);
 
-      // 0.5초 간격으로 아이템 순차적으로 추가
+      // 마지막 아이템이 추가되면 추출 상태 해제
+      let itemsAdded = 0;
+
       results.forEach((item, index) => {
         setTimeout(() => {
           this.randomItems.push(item);
+          itemsAdded++;
+
+          // 모든 아이템이 추가되면 추출 상태 해제
+          if (itemsAdded === results.length) {
+            this.isDrawing = false;
+          }
         }, 300 * index);
       });
 
@@ -192,53 +233,4 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped>
-.description {
-  margin-bottom: 20px;
-  padding: 20px;
-  border-radius: 5px;
-  background-color: #f0f4f8;
-  color: #333;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-.percentage {
-  font-style: italic;
-  font-size: 12px;
-}
-
-p {
-  margin: 0 0 10px;
-}
-
-ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-li {
-  margin-bottom: 5px;
-}
-
-.Ideal-controls {
-  margin: 10px 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.Ideal-controls button {
-  padding: 5px 10px;
-  background-color: #ff6b6b;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.Ideal-controls button:hover {
-  background-color: #ee5253;
-}
-</style>
+<style src="@/assets/css/gacha-components.css"></style>

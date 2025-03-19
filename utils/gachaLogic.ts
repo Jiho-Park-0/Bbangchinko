@@ -1,4 +1,4 @@
-import { DataItem } from "~/pages/gacha/_id.vue";
+import { DataItem } from "@/types/index";
 
 function getRandomItem(items: DataItem[]): DataItem {
   return items[Math.floor(Math.random() * items.length)];

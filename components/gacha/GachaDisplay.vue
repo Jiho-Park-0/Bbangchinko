@@ -22,6 +22,10 @@
           </a>
         </div>
       </template>
+      <div v-else-if="isLoading" class="loading-message">
+        <div class="spinner"></div>
+        <span>광기를 추출 중입니다...</span>
+      </div>
       <div v-else class="empty-message">당신의 광기를 녹여보세요.</div>
     </div>
   </div>
@@ -29,7 +33,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { DataItem } from "@/pages/gacha/_id.vue";
+import { DataItem } from "@/types/index";
 
 export default Vue.extend({
   name: "GachaDisplay",
@@ -41,6 +45,10 @@ export default Vue.extend({
     drawCount: {
       type: Number,
       default: 0,
+    },
+    isLoading: {
+      type: Boolean,
+      default: false,
     },
   },
   methods: {
@@ -64,3 +72,31 @@ export default Vue.extend({
 </script>
 
 <style src="@/assets/css/gacha.css"></style>
+
+<style>
+.loading-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 100px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #4a90e2;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>
