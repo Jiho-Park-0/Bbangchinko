@@ -1,25 +1,28 @@
 <template>
-  <div v-if="items && items.length">
+  <div>
     <div class="extraction">
-      <div v-for="(item, index) in items" :key="`${item.id}-${index}`">
-        <a
-          :href="getItemLink(item)"
-          class="card"
-          :class="getGradeClass(item)"
-          target="_blank"
-        >
-          <nuxt-img
-            preset="low_quality"
-            class="image"
-            :src="item.beforeImage || item.image"
-            :alt="'Item ' + item.id"
-            loading="lazy"
-            format="webp"
-            width="200"
-            height="120"
-          />
-        </a>
-      </div>
+      <template v-if="items && items.length">
+        <div v-for="(item, index) in items" :key="`${item.id}-${index}`">
+          <a
+            :href="getItemLink(item)"
+            class="card"
+            :class="getGradeClass(item)"
+            target="_blank"
+          >
+            <nuxt-img
+              preset="low_quality"
+              class="image"
+              :src="item.beforeImage || item.image"
+              :alt="'Item ' + item.id"
+              loading="lazy"
+              format="webp"
+              width="200"
+              height="120"
+            />
+          </a>
+        </div>
+      </template>
+      <div v-else class="empty-message">당신의 광기를 녹여보세요.</div>
     </div>
   </div>
 </template>

@@ -23,7 +23,6 @@ export default Vue.extend({
 <style scoped>
 html,
 body {
-  height: 100%;
   margin: 0;
 }
 
@@ -32,8 +31,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 70vh;
   text-align: center;
+  height: 100vh;
 }
 
 h1 {
