@@ -5,7 +5,15 @@
       :disabled="isDrawing"
       :class="{ 'button-disabled': isDrawing }"
     >
-      {{ isDrawing ? "추출 중..." : "1회 추출" }}
+      {{ isDrawing ? "추출 중..." : "1회 추출"
+      }}<span v-if="!isDrawing"
+        ><img
+          :src="require('~/assets/images/Lunacy.webp')"
+          alt="광기"
+          class="icon"
+        />
+        130</span
+      >
     </button>
     <button
       @click="$emit('drawTen')"
@@ -13,6 +21,14 @@
       :class="{ 'button-disabled': isDrawing }"
     >
       {{ isDrawing ? "추출 중..." : "10회 추출" }}
+      <span v-if="!isDrawing"
+        ><img
+          :src="require('~/assets/images/Lunacy.webp')"
+          alt="광기"
+          class="icon"
+        />
+        1300</span
+      >
     </button>
   </div>
 </template>
@@ -59,5 +75,14 @@ button:hover {
 
 .button-disabled:hover {
   background-color: #cccccc;
+}
+
+.icon {
+  height: 24px; /* 높이만 지정하여 비율 유지 */
+  width: auto; /* 원본 비율 유지 */
+  image-rendering: -webkit-optimize-contrast; /* Safari/Chrome 최적화 */
+  image-rendering: crisp-edges; /* Firefox 최적화 */
+  -ms-interpolation-mode: nearest-neighbor; /* IE 최적화 */
+  vertical-align: middle;
 }
 </style>

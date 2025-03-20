@@ -3,15 +3,19 @@ export const state = () => ({
   // 픽업 ID 목록은 하드코딩
   pickupConfig: {
     1: {
-      identity: [139, 138],
-      ego: [96, 95],
+      identity: [141],
+      ego: [],
     },
     2: {
-      identity: [],
-      ego: [96],
+      identity: [110, 85],
+      ego: [63, 22],
     },
     3: {
       identity: [],
+      ego: [],
+    },
+    4: {
+      identity: [45, 16, 25],
       ego: [],
     },
   },
@@ -20,18 +24,21 @@ export const state = () => ({
     1: 0,
     2: 0,
     3: 0,
+    4: 0,
   },
   // 픽업 아이템 획득 횟수를 저장하는 객체 추가
   pickupCounts: {
     1: { identity: 0, ego: 0 },
     2: { identity: 0, ego: 0 },
     3: { identity: 0, ego: 0 },
+    4: { identity: 0, ego: 0 },
   },
   // 획득한 고급 아이템 이력 저장 (신규 추가)
   rareItems: {
     1: [],
     2: [],
     3: [],
+    4: [],
   },
 });
 

@@ -2,6 +2,12 @@
   <header class="header">
     <div class="container">
       <h1 class="title">
+        <img
+          src="@/assets/images/logo.webp"
+          class="logo-img"
+          alt="빵칭코 로고"
+        />
+
         <NuxtLink to="/" class="nav-item" @click.native="closeMenu"
           >빵칭코</NuxtLink
         >
@@ -24,7 +30,7 @@
         <ul class="nav-links">
           <li>
             <NuxtLink to="/" class="nav-item" @click.native="closeMenu"
-              >뽑기 리스트</NuxtLink
+              >추출 리스트</NuxtLink
             >
           </li>
           <li>
@@ -85,6 +91,15 @@ export default {
   font-weight: bold;
   font-family: "KOTRA_BOLD", sans-serif;
   z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
 .nav-links {
@@ -126,8 +141,13 @@ export default {
     font-size: 24px;
   }
 
+  .logo-img {
+    height: 32px;
+  }
+
   .hamburger {
     display: block;
+    z-index: 1000; /* z-index 값 증가 */
   }
 
   .hamburger.is-active .bar:nth-child(2) {
@@ -143,32 +163,37 @@ export default {
   }
 
   .nav {
-    position: fixed;
-    left: -100%;
-    top: 0;
-    gap: 0;
-    flex-direction: column;
+    position: absolute;
+    top: -200px; /* 위에 숨겨둠 */
+    left: 0;
+    right: 0;
     background-color: #f9fafb;
     width: 100%;
-    height: 100vh;
+    height: auto; /* 컨텐츠에 맞게 자동 조절 */
     text-align: center;
     transition: 0.3s;
-    padding-top: 70px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999; /* title보다 낮고 다른 컨텐츠보다 높게 설정 */
+    border-radius: 0 0 10px 10px; /* 하단 모서리 둥글게 */
+    padding: 15px 0; /* 위아래 여백 추가 */
   }
 
   .nav.is-active {
+    top: 60px; /* 헤더 아래에 위치하도록 조정 */
     left: 0;
   }
 
   .nav-links {
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem; /* 간격 줄임 */
+    padding: 0;
+    margin: 0;
   }
 
   .nav-item {
     font-size: 1.2rem;
-    padding: 1rem 0;
+    padding: 0.7rem 0; /* 패딩 줄임 */
+    display: block;
   }
 }
 
@@ -176,6 +201,10 @@ export default {
   /* 모바일 사이즈 대응 */
   .title {
     font-size: 22px;
+  }
+
+  .logo-img {
+    height: 28px;
   }
 
   .nav-item {

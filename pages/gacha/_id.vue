@@ -63,7 +63,7 @@ export default Vue.extend({
       randomItems: [] as DataItem[],
       identityExcludedIds: [
         13, 34, 83, 84, 103, 119, 120, 131, 132, 116, 117, 110, 111, 80, 53, 41,
-        74, 90, 17, 65,
+        74, 90, 17, 65, 140,
       ] as number[],
       egoIncludedIds: [
         79, 61, 58, 90, 96, 8, 3, 47, 95, 30, 21, 17, 91, 92, 25, 43, 52, 56, 6,
@@ -122,8 +122,8 @@ export default Vue.extend({
       const id = params?.id || "1";
       const baseURL = $config.baseURL;
 
-      const identityUrl = `${baseURL}dictionary/identity`;
-      const egoUrl = `${baseURL}dictionary/ego`;
+      const identityUrl = `${baseURL}/dictionary/identity`;
+      const egoUrl = `${baseURL}/dictionary/ego`;
 
       const [identityResponse, egoResponse] = await Promise.all([
         fetch(identityUrl).then((res) => res.json()),

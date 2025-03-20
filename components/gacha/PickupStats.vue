@@ -20,7 +20,7 @@
     <!-- 획득 이력 목록 - 토글로 표시/숨김 -->
     <div class="history-section">
       <div class="history-header">
-        <h4>3성 EGO 획득 이력</h4>
+        <h4>3성 / EGO 획득 이력</h4>
         <button class="toggle-button" @click="toggleHistory">
           {{ isHistoryOpen ? "접기" : "펼치기" }}
         </button>

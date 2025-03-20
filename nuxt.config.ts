@@ -19,6 +19,7 @@ export default {
         modifiers: {
           quality: 70,
           format: "webp",
+          fit: "cover",
         },
       },
     },
@@ -33,6 +34,8 @@ export default {
     },
   },
   head: {
+    title: "빵칭코 - 추출 시뮬레이터", // 기본 타이틀
+    titleTemplate: "%s - 빵칭코", // 각 페이지의 타이틀 앞뒤로 붙일 템플릿 (페이지별 title이 %s에 들어감)
     meta: [
       { charset: "utf-8" },
       {
@@ -40,6 +43,10 @@ export default {
         content:
           "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
       },
+    ],
+    link: [
+      // favicon 파일은 보통 static 폴더에 위치하며, 빌드 시 루트 경로로 복사됩니다.
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
     ],
   },
 };

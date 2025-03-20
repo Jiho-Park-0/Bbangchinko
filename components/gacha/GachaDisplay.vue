@@ -9,16 +9,21 @@
             :class="getGradeClass(item)"
             target="_blank"
           >
-            <nuxt-img
-              preset="low_quality"
-              class="image"
-              :src="item.beforeImage || item.image"
-              :alt="'Item ' + item.id"
-              loading="lazy"
-              format="webp"
-              width="200"
-              height="120"
-            />
+            <template v-if="item.beforeImage || item.image">
+              <nuxt-img
+                preset="low_quality"
+                class="image"
+                :src="item.beforeImage || item.image"
+                :alt="'Item ' + item.id"
+                loading="lazy"
+                format="webp"
+                width="200"
+                height="120"
+              />
+            </template>
+            <div v-else class="image-placeholder">
+              <span>이미지 준비중</span>
+            </div>
           </a>
         </div>
       </template>
@@ -26,7 +31,7 @@
         <div class="spinner"></div>
         <span>광기를 추출 중입니다...</span>
       </div>
-      <div v-else class="empty-message">당신의 광기를 녹여보세요.</div>
+      <div v-else class="empty-message">광기가 사르륵</div>
     </div>
   </div>
 </template>
@@ -175,5 +180,30 @@ export default Vue.extend({
   to {
     transform: rotate(360deg);
   }
+}
+
+.empty-message {
+  grid-column: 1 / -1;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  color: #666;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
 }
 </style>
