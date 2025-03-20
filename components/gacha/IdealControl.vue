@@ -8,7 +8,7 @@
       alt="광기"
       class="icon"
     />
-    <span>소모된 광기: {{ computedLunacy }}</span>
+    <span>광기: {{ computedLunacy }}</span>
   </div>
 </template>
 
