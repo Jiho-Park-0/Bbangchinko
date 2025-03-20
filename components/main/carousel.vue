@@ -4,19 +4,30 @@
       <div class="carousel-slide" :style="slideStyle">
         <!-- 첫 번째 슬라이드 앞에 마지막 슬라이드 복제 -->
         <div class="carousel-item" v-if="items.length > 0">
-          <nuxt-img
-            preset="low_quality"
-            class="carousel-image"
-            :src="
+          <!-- 이미지 유무 체크 추가 -->
+          <template
+            v-if="
               items[items.length - 1].beforeImage ||
               items[items.length - 1].image
             "
-            :alt="items[items.length - 1].name"
-            loading="lazy"
-            format="webp"
-            width="600"
-            height="300"
-          />
+          >
+            <nuxt-img
+              preset="low_quality"
+              class="carousel-image"
+              :src="
+                items[items.length - 1].beforeImage ||
+                items[items.length - 1].image
+              "
+              :alt="items[items.length - 1].name || '이미지'"
+              loading="lazy"
+              format="webp"
+              width="600"
+              height="300"
+            />
+          </template>
+          <div v-else class="image-placeholder">
+            <span>이미지 준비중</span>
+          </div>
           <div class="carousel-caption">
             <h3>{{ items[items.length - 1].name }}</h3>
             <p v-if="items[items.length - 1].character">
@@ -27,16 +38,21 @@
 
         <!-- 실제 슬라이드들 -->
         <div v-for="(item, index) in items" :key="index" class="carousel-item">
-          <nuxt-img
-            preset="low_quality"
-            class="carousel-image"
-            :src="item.beforeImage || item.image"
-            :alt="item.name"
-            loading="lazy"
-            format="webp"
-            width="600"
-            height="300"
-          />
+          <template v-if="item.beforeImage || item.image">
+            <nuxt-img
+              preset="low_quality"
+              class="carousel-image"
+              :src="item.beforeImage || item.image"
+              :alt="item.name"
+              loading="lazy"
+              format="webp"
+              width="600"
+              height="300"
+            />
+          </template>
+          <div v-else class="image-placeholder">
+            <span>이미지 준비중</span>
+          </div>
           <div class="carousel-caption">
             <h3>{{ item.name }}</h3>
             <p v-if="item.character">{{ item.character }}</p>
@@ -45,16 +61,22 @@
 
         <!-- 마지막 슬라이드 뒤에 첫 번째 슬라이드 복제 -->
         <div class="carousel-item" v-if="items.length > 0">
-          <nuxt-img
-            preset="low_quality"
-            class="carousel-image"
-            :src="items[0].beforeImage || items[0].image"
-            :alt="items[0].name"
-            loading="lazy"
-            format="webp"
-            width="600"
-            height="300"
-          />
+          <!-- 이미지 유무 체크 추가 -->
+          <template v-if="items[0].beforeImage || items[0].image">
+            <nuxt-img
+              preset="low_quality"
+              class="carousel-image"
+              :src="items[0].beforeImage || items[0].image"
+              :alt="items[0].name || '이미지'"
+              loading="lazy"
+              format="webp"
+              width="600"
+              height="300"
+            />
+          </template>
+          <div v-else class="image-placeholder">
+            <span>이미지 준비중</span>
+          </div>
           <div class="carousel-caption">
             <h3>{{ items[0].name }}</h3>
             <p v-if="items[0].character">{{ items[0].character }}</p>
@@ -256,6 +278,32 @@ export default Vue.extend({
 
   .carousel-caption p {
     font-size: 12px;
+  }
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  color: #666;
+  font-weight: 500;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* 필요시 반응형 디자인에 추가 */
+@media (max-width: 768px) {
+  .image-placeholder {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .image-placeholder {
+    font-size: 16px;
   }
 }
 </style>

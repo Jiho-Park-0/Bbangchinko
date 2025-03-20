@@ -3,7 +3,7 @@ export const state = () => ({
   // 픽업 ID 목록은 하드코딩
   pickupConfig: {
     1: {
-      identity: [139, 138],
+      identity: [141, 140, 139],
       ego: [],
     },
     2: {

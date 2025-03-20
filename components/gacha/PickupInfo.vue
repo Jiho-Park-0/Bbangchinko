@@ -15,16 +15,23 @@
             target="_blank"
             class="pickup-card"
           >
-            <nuxt-img
-              preset="low_quality"
-              class="pickup-image"
-              :src="item.beforeImage || item.image"
-              :alt="item.name"
-              loading="lazy"
-              format="webp"
-              width="200"
-              height="120"
-            />
+            <div class="pickup-image-container">
+              <template v-if="item.beforeImage || item.image">
+                <nuxt-img
+                  preset="low_quality"
+                  class="pickup-image"
+                  :src="item.beforeImage || item.image"
+                  :alt="item.name"
+                  loading="lazy"
+                  format="webp"
+                  width="200"
+                  height="120"
+                />
+              </template>
+              <div v-else class="image-placeholder">
+                <span>이미지 준비중</span>
+              </div>
+            </div>
             <div class="pickup-details">
               <div class="pickup-name">{{ item.name }}</div>
               <div v-if="item.character" class="pickup-character">
@@ -46,16 +53,23 @@
             target="_blank"
             class="pickup-card"
           >
-            <nuxt-img
-              preset="low_quality"
-              class="pickup-image"
-              :src="item.beforeImage || item.image"
-              :alt="item.name"
-              loading="lazy"
-              format="webp"
-              width="200"
-              height="120"
-            />
+            <div class="pickup-image-container">
+              <template v-if="item.beforeImage || item.image">
+                <nuxt-img
+                  preset="low_quality"
+                  class="pickup-image"
+                  :src="item.beforeImage || item.image"
+                  :alt="item.name"
+                  loading="lazy"
+                  format="webp"
+                  width="200"
+                  height="120"
+                />
+              </template>
+              <div v-else class="image-placeholder">
+                <span>이미지 준비중</span>
+              </div>
+            </div>
             <div class="pickup-details">
               <div class="pickup-name">{{ item.name }}</div>
               <div v-if="item.character" class="pickup-character">
@@ -166,10 +180,30 @@ export default Vue.extend({
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
+.pickup-image-container {
+  width: 100%;
+  height: 120px;
+  position: relative;
+  overflow: hidden;
+}
+
 .pickup-image {
   width: 100%;
   height: 120px;
   object-fit: cover;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  color: #666;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
 }
 
 .pickup-details {
