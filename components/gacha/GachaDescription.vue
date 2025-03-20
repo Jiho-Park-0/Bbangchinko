@@ -1,6 +1,6 @@
 <template>
   <div class="description">
-    <p>픽업 확률</p>
+    <h3>픽업 확률</h3>
     <p class="percentage">인격: 1.45% / 픽업수</p>
     <p class="percentage">에고: 0.65% / 픽업수</p>
 
@@ -13,6 +13,7 @@
     <p class="percentage">
       10회 추출 10번째 확률: EGO 1.3% / 3성 2.9% / 2성 95.8%
     </p>
+    <p class="bold">림버스컴퍼니와 다르게 EGO가 중복으로 나올 수 있습니다.</p>
     <p>픽업 외 정보는 림버스컴퍼니의 편성된 정보와 동일하게 포함했습니다.</p>
     <p>
       예상치 못한 데이터가 나왔을 경우 문의메일로 연락해주시면 감사하겠습니다.
@@ -31,5 +32,9 @@ export default Vue.extend({
 <style>
 .description {
   margin: 20px 0;
+}
+
+.bold {
+  font-weight: bold;
 }
 </style>

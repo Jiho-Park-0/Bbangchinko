@@ -24,17 +24,17 @@
         <ul class="nav-links">
           <li>
             <NuxtLink to="/" class="nav-item" @click.native="closeMenu"
-              >메인</NuxtLink
+              >뽑기 리스트</NuxtLink
             >
           </li>
           <li>
-            <NuxtLink to="/gacha" class="nav-item" @click.native="closeMenu"
-              >뽑기</NuxtLink
-            >
-          </li>
-          <li>
-            <NuxtLink to="/explain" class="nav-item" @click.native="closeMenu"
-              >설명서</NuxtLink
+            <a
+              href="https://baslimbus.info"
+              class="nav-item"
+              target="_blank"
+              rel="noopener noreferrer"
+              @click="closeMenu"
+              >단빵숲</a
             >
           </li>
         </ul>

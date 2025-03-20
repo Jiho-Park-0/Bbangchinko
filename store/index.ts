@@ -27,6 +27,12 @@ export const state = () => ({
     2: { identity: 0, ego: 0 },
     3: { identity: 0, ego: 0 },
   },
+  // 획득한 고급 아이템 이력 저장 (신규 추가)
+  rareItems: {
+    1: [],
+    2: [],
+    3: [],
+  },
 });
 
 // 뮤테이션(mutations) 정의
@@ -75,6 +81,19 @@ export const mutations = {
     }
   },
 
+  // 고급 아이템 추가 뮤테이션 (신규 추가)
+  addRareItem(state: any, { id, item }: { id: string; item: any }) {
+    if (state.rareItems[id]) {
+      state.rareItems[id].push({
+        id: item.id,
+        name: item.name,
+        character: item.character || "",
+        type: item.type,
+        grade: item.grade,
+      });
+    }
+  },
+
   // 새로운 통합 리셋 함수 추가
   resetStatsById(state: any, id: string) {
     // Ideal 초기화
@@ -86,6 +105,11 @@ export const mutations = {
     if (state.pickupCounts[id]) {
       state.pickupCounts[id].identity = 0;
       state.pickupCounts[id].ego = 0;
+    }
+
+    // 획득 이력 초기화 (신규 추가)
+    if (state.rareItems[id]) {
+      state.rareItems[id] = [];
     }
   },
 };

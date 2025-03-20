@@ -22,7 +22,12 @@
       :isDrawing="isDrawing"
     />
 
-    <GachaDisplay :items="randomItems" :drawCount="currentIdeal" />
+    <GachaDisplay
+      :items="randomItems"
+      :drawCount="currentIdeal"
+      :id="id"
+      :isLoading="isLoading"
+    />
 
     <GachaDescription />
   </div>
@@ -65,6 +70,7 @@ export default Vue.extend({
         60, 46, 63, 80, 83, 35, 11, 65,
       ] as number[],
       isDrawing: false, // 추출 중인지 여부를 추적할 상태 변수 추가
+      isLoading: false, // 로딩 상태를 추적할 상태 변수 추가
     };
   },
 

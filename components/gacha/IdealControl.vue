@@ -32,16 +32,64 @@ export default Vue.extend({
       default: 0,
     },
   },
+  data() {
+    return {
+      ceilingAudio: null as HTMLAudioElement | null,
+      prevIdeal: 0, // 이전 ideal 값 저장
+    };
+  },
+  mounted() {
+    // 천장 효과음 생성
+    this.ceilingAudio = new Audio("/sounds/gacha_ceiling.mp3");
+    this.ceilingAudio.volume = 0.2;
+
+    // 초기 값 저장
+    this.prevIdeal = this.ideal;
+  },
+  watch: {
+    ideal(newValue, oldValue) {
+      // ideal이 200 이상이 되었을 때만 사운드 재생
+      if (newValue >= 200 && oldValue < 200) {
+        this.playCeilingSound();
+      }
+    },
+  },
   methods: {
     ...mapMutations(["resetStatsById"]),
     resetStats() {
       this.resetStatsById(this.id);
+    },
+    playCeilingSound() {
+      // 오디오가 준비되었는지 확인
+      if (this.ceilingAudio) {
+        console.log("천장 효과음 재생 시도");
+
+        // 재생 중이라면 처음으로 되감기
+        if (!this.ceilingAudio.paused) {
+          this.ceilingAudio.currentTime = 0;
+        }
+
+        // 재생 시작 (사용자 상호작용 필요)
+        this.ceilingAudio
+          .play()
+          .then(() => console.log("천장 효과음 재생 성공"))
+          .catch((err) => {
+            console.error("천장 효과음 재생 오류:", err);
+          });
+      }
     },
   },
   computed: {
     computedLunacy(): number {
       return this.ideal * 130 * -1;
     },
+  },
+  // 컴포넌트 파괴 시 메모리 정리
+  beforeDestroy() {
+    if (this.ceilingAudio) {
+      this.ceilingAudio.pause();
+      this.ceilingAudio = null;
+    }
   },
 });
 </script>
