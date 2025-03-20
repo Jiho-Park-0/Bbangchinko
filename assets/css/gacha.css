@@ -1,0 +1,264 @@
+:root {
+  /* 색상 변수 */
+  --color-grade-1: #8b4513;
+  --color-grade-2: #ff0000;
+  --color-grade-3-primary: #ffd700;
+  --color-grade-3-secondary: #daa520;
+  --color-background: #f0f4f8;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+
+  /* 크기 변수 */
+  --card-border-radius: 8px;
+  --card-border-width: 4px;
+  --animation-duration: 0.8s;
+  --hover-scale: 1.2;
+  --mobile-hover-scale: 1.1;
+}
+
+/* 이미지 로딩 관련 */
+.Image {
+  transition: opacity 0.3s ease;
+}
+.Image[data-loaded="false"] {
+  opacity: 0;
+}
+.Image[data-loaded="true"] {
+  opacity: 1;
+}
+
+/* 추출 결과 그리드 레이아웃 */
+
+.extraction {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  justify-items: center;
+  min-height: 300px; /* 최소 높이 설정 */
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 12px;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* 빈 상태 메시지 스타일 */
+.empty-message {
+  grid-column: 1 / -1; /* 전체 너비 */
+  text-align: center;
+  padding: 100px 0;
+  color: #999;
+  font-size: 18px;
+  width: 100%;
+}
+
+/* 반응형 그리드 */
+@media (max-width: 1200px) {
+  .extraction {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .extraction {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  img {
+    width: 150px;
+    height: 90px;
+  }
+
+  .card:hover {
+    transform: scale(var(--mobile-hover-scale));
+  }
+}
+
+/* 기본 카드 스타일 */
+.card {
+  display: flex;
+  position: relative;
+  animation: dropIn var(--animation-duration) ease-out forwards;
+  opacity: 0;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: scale(var(--hover-scale));
+  transform-origin: center;
+  box-shadow: 0 4px 12px var(--color-shadow);
+  z-index: 2;
+}
+
+/* 카드 등장 애니메이션 */
+@keyframes dropIn {
+  from {
+    transform: translateY(-200px);
+    opacity: 0.5;
+    filter: blur(2px);
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* 잔상 효과 */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0; /* top, right, bottom, left를 한번에 설정 */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.15) 30%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  animation: trail 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes trail {
+  0% {
+    transform: translateY(-200px) scale(1.2);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-50px) scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+}
+
+/* 회전 애니메이션 */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 등급별 카드 스타일 */
+/* 1등급 (갈색) */
+.grade-1 {
+  border: var(--card-border-width) solid var(--color-grade-1);
+  box-shadow: 0 0 5px var(--color-grade-1);
+}
+
+.grade-1:hover {
+  box-shadow: 0 0 15px var(--color-grade-1);
+}
+
+/* 2등급 (적색) */
+.grade-2 {
+  border: var(--card-border-width) solid var(--color-grade-2);
+  box-shadow: 0 0 5px var(--color-grade-2);
+}
+
+.grade-2:hover {
+  box-shadow: 0 0 15px var(--color-grade-2);
+}
+
+/* 3등급 및 EGO 공통 스타일 */
+.grade-3,
+.ego {
+  position: relative;
+  border: none;
+  box-sizing: border-box;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* 3등급 (황금색) */
+.grade-3 {
+  box-shadow: 0 0 50px 10px var(--color-grade-3-secondary);
+}
+
+.grade-3:hover {
+  box-shadow: 0 0 20px var(--color-grade-3-primary);
+}
+
+/* EGO (특별 효과) */
+.ego {
+  box-shadow: 0 0 100px 10px var(--color-grade-3-secondary);
+}
+
+.ego:hover {
+  box-shadow: 0 0 20px var(--color-grade-3-primary);
+}
+
+/* 내부 배경 */
+.grade-3::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240px;
+  height: 240px;
+  margin-left: -120px;
+  margin-top: -120px;
+  border-radius: 50%;
+}
+
+.ego::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: -2;
+  background: rgb(204, 163, 74);
+  transform: translateZ(0);
+}
+
+/* 회전하는 테두리 공통 스타일 */
+.grade-3::after,
+.ego::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent 0deg,
+    var(--color-grade-3-primary) 90deg,
+    var(--color-grade-3-secondary) 180deg,
+    var(--color-grade-3-primary) 270deg,
+    transparent 360deg
+  );
+  z-index: -1;
+  animation: spin 3s linear infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* 이미지 컨테이너 조정 */
+.grade-3 .image {
+  position: relative;
+  z-index: 1;
+  border: 4px solid transparent;
+  box-sizing: border-box;
+  margin: 2px;
+  transform: translateZ(0);
+}
+
+.ego .image {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 4px;
+  transform: translateZ(0);
+}
+
+/* 기본 이미지 스타일 */
+img {
+  width: 200px;
+  height: 120px;
+  object-fit: cover;
+}

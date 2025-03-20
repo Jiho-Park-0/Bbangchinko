@@ -183,6 +183,7 @@ export default {
           errorLayout = errorLayout(this.context)
         }
 
+        this.nuxt.errPageReady = true
         this.setLayout(errorLayout)
       }
     },

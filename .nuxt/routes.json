@@ -7,17 +7,17 @@
     "_name": "_52f02efb"
   },
   {
-    "name": "getcha",
-    "path": "/getcha",
-    "component": "C:\\\\Users\\\\Jiho Park\\\\Github\\\\bbangchinko\\\\pages\\\\getcha\\\\index.vue",
-    "chunkName": "pages/getcha/index",
-    "_name": "_e789b988"
-  },
-  {
     "name": "index",
     "path": "/",
     "component": "C:\\\\Users\\\\Jiho Park\\\\Github\\\\bbangchinko\\\\pages\\\\index.vue",
     "chunkName": "pages/index",
     "_name": "_0ca11002"
+  },
+  {
+    "name": "gacha-id",
+    "path": "/gacha/:id?",
+    "component": "C:\\\\Users\\\\Jiho Park\\\\Github\\\\bbangchinko\\\\pages\\\\gacha\\\\_id.vue",
+    "chunkName": "pages/gacha/_id",
+    "_name": "_7d0291f8"
   }
 ]
