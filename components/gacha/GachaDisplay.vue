@@ -31,7 +31,7 @@
         <div class="spinner"></div>
         <span>광기를 추출 중입니다...</span>
       </div>
-      <div v-else class="empty-message">당신의 광기를 녹여보세요.</div>
+      <div v-else class="empty-message">광기가 사르륵</div>
     </div>
   </div>
 </template>
@@ -180,6 +180,18 @@ export default Vue.extend({
   to {
     transform: rotate(360deg);
   }
+}
+
+.empty-message {
+  grid-column: 1 / -1;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #666;
 }
 
 .image-placeholder {

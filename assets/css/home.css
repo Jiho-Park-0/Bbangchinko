@@ -198,3 +198,56 @@
     height: 300px;
   }
 }
+
+.intro-section {
+  width: 100%;
+  margin-bottom: 2rem;
+
+  background-color: #f9fafb;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border-left: 4px solid #42b983;
+}
+
+.intro-title {
+  font-size: 1.8rem;
+  color: #42b983;
+  margin-bottom: 0.8rem;
+  font-family: "KOTRA_BOLD", sans-serif;
+}
+
+.intro-text {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .intro-section {
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-title {
+    font-size: 1.5rem;
+  }
+
+  .intro-text {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-section {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .intro-title {
+    font-size: 1.3rem;
+  }
+}

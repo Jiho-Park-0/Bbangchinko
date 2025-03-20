@@ -1,12 +1,18 @@
 <template>
   <div class="home-container">
-    <!-- <h1 class="home-title">빵칭코 - 리버스 1999 시뮬레이터</h1> -->
-
+    <div class="intro-section">
+      <h1 class="intro-title">빵칭코</h1>
+      <p class="intro-text">림버스 컴퍼니 추출 시뮬레이션 '빵칭코'입니다.</p>
+      <p class="intro-text">
+        현재 임시 테스트 단계입니다. 기능 및 확률은 시뮬레이터 설명칸을 참조
+        바랍니다.
+      </p>
+    </div>
     <div class="pickup-grid">
       <!-- 각 픽업 카드 -->
-      <div v-for="id in 3" :key="id" class="pickup-card">
+      <div v-for="id in 4" :key="id" class="pickup-card">
         <nuxt-link :to="`/gacha/${id}`">
-          <h2>픽업 {{ id }}</h2>
+          <h2>{{ getPickupTitle(id) }}</h2>
           <div class="content-container">
             <!-- 픽업이 있는 경우 (2개 이상) -->
             <div v-if="hasPickups(id) && getPickupImages(id).length > 1">
@@ -63,6 +69,13 @@ export default Vue.extend({
   data() {
     return {
       allData: [] as DataItem[],
+      // 픽업 제목 배열 추가
+      pickupTitles: {
+        "1": "심야청소 - 신규 인격 특정 추출",
+        "2": "특정 추출 - 홍루",
+        "3": "상시 추출",
+        "4": "개발 테스트 추출",
+      } as { [key: string]: string },
     };
   },
 
@@ -110,6 +123,11 @@ export default Vue.extend({
       const config = this.$store.state.pickupConfig[id];
 
       return Boolean(config?.identity?.length > 0 || config?.ego?.length > 0);
+    },
+
+    // 픽업 제목 가져오는 메서드 추가
+    getPickupTitle(id: number): string {
+      return this.pickupTitles[id.toString()] || `픽업 ${id}`;
     },
   },
 
