@@ -23,21 +23,6 @@ export default {
 };
 </script>
 
-<!-- Google tag (gtag.js) -->
-<script
-  async
-  src="https://www.googletagmanager.com/gtag/js?id=G-PJP633HKE0"
-></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag() {
-  dataLayer.push(arguments);
-}
-gtag("js", new Date());
-
-gtag("config", "G-PJP633HKE0");
-</script>
-
 <style>
 /* 오직 main 내부의 content-wrapper에만 max-width 적용 */
 .content-wrapper {

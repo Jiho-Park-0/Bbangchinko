@@ -49,6 +49,26 @@ export default {
       // favicon 파일은 보통 static 폴더에 위치하며, 빌드 시 루트 경로로 복사됩니다.
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
     ],
+    script: [
+      {
+        // async 속성을 true로 설정
+        src: "https://www.googletagmanager.com/gtag/js?id=G-PJP633HKE0",
+        async: true,
+      },
+      {
+        // 실제 GA 스크립트 삽입
+        hid: "ga-script",
+        innerHTML: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){ dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', 'G-PJP633HKE0');
+        `,
+        type: "text/javascript",
+        charset: "utf-8",
+      },
+    ],
+    __dangerouslyDisableSanitizers: ["script"],
   },
   generate: {
     fallback: true,

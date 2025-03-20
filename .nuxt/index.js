@@ -83,7 +83,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"빵칭코 - 추출 시뮬레이터","titleTemplate":"%s - 빵칭코","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"style":[],"script":[]},
+    head: {"title":"빵칭코 - 추출 시뮬레이터","titleTemplate":"%s - 빵칭코","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"script":[{"src":"https:\u002F\u002Fwww.googletagmanager.com\u002Fgtag\u002Fjs?id=G-PJP633HKE0","async":true},{"hid":"ga-script","innerHTML":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){ dataLayer.push(arguments); }\n          gtag('js', new Date());\n          gtag('config', 'G-PJP633HKE0');\n        ","type":"text\u002Fjavascript","charset":"utf-8"}],"__dangerouslyDisableSanitizers":["script"],"style":[]},
 
     store,
     router,
