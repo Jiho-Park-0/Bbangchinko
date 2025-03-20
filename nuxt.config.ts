@@ -19,6 +19,7 @@ export default {
         modifiers: {
           quality: 70,
           format: "webp",
+          fit: "cover",
         },
       },
     },

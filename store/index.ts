@@ -4,11 +4,11 @@ export const state = () => ({
   pickupConfig: {
     1: {
       identity: [139, 138],
-      ego: [96, 95],
+      ego: [],
     },
     2: {
       identity: [],
-      ego: [96],
+      ego: [96, 95],
     },
     3: {
       identity: [],

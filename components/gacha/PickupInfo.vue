@@ -65,9 +65,6 @@
           </a>
         </div>
       </div>
-
-      <!-- 픽업 정보가 없을 때 -->
-      <div v-else class="pickup-empty">상시 픽업 입니다.</div>
     </div>
   </div>
 </template>
