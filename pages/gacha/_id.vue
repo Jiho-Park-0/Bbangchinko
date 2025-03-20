@@ -121,8 +121,9 @@ export default Vue.extend({
     try {
       const id = params?.id || "1";
       const baseURL = $config.baseURL;
-      const identityUrl = `${baseURL}/dictionary/identity`;
-      const egoUrl = `${baseURL}/dictionary/ego`;
+
+      const identityUrl = `${baseURL}dictionary/identity`;
+      const egoUrl = `${baseURL}dictionary/ego`;
 
       const [identityResponse, egoResponse] = await Promise.all([
         fetch(identityUrl).then((res) => res.json()),
