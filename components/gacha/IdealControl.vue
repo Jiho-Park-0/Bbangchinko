@@ -48,8 +48,12 @@ export default Vue.extend({
   },
   watch: {
     ideal(newValue, oldValue) {
-      // ideal이 200 이상이 되었을 때만 사운드 재생
-      if (newValue >= 200 && oldValue < 200) {
+      // ideal이 200 이상이 되었을 때와 200의 배수일 때 사운드 재생 (0일 때는 제외)
+      if (
+        newValue !== 0 &&
+        ((newValue >= 200 && oldValue < 200) ||
+          (newValue % 200 === 0 && newValue !== oldValue))
+      ) {
         this.playCeilingSound();
       }
     },
