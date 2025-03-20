@@ -1,6 +1,7 @@
 export default {
   buildModules: ["@nuxt/typescript-build", "@nuxt/image"],
   css: ["@/assets/css/main.css", "@/assets/css/fonts.css"],
+  target: "static", // 정적 사이트로 빌드 (Vercel 배포를 위해 필요)
 
   publicRuntimeConfig: {
     baseURL: process.env.BASE_URL,
@@ -48,5 +49,8 @@ export default {
       // favicon 파일은 보통 static 폴더에 위치하며, 빌드 시 루트 경로로 복사됩니다.
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
     ],
+  },
+  generate: {
+    dir: "dist", // 빌드 결과물을 'dist' 디렉토리에 출력
   },
 };
