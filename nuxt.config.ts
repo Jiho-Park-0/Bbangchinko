@@ -1,11 +1,7 @@
 export default {
-  buildModules: [
-    "@nuxtjs/vercel-builder",
-    "@nuxt/typescript-build",
-    "@nuxt/image",
-  ],
+  buildModules: ["@nuxt/typescript-build", "@nuxt/image"],
   css: ["@/assets/css/main.css", "@/assets/css/fonts.css"],
-  target: "server", // 정적 사이트로 빌드 (Vercel 배포를 위해 필요)
+  target: "static",
 
   publicRuntimeConfig: {
     baseURL: process.env.BASE_URL,
@@ -55,6 +51,6 @@ export default {
     ],
   },
   generate: {
-    dir: "dist", // 빌드 결과물을 'dist' 디렉토리에 출력
+    fallback: true,
   },
 };
