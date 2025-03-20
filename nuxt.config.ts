@@ -1,5 +1,9 @@
 export default {
-  buildModules: ["@nuxt/typescript-build", "@nuxt/image"],
+  buildModules: [
+    "@nuxtjs/vercel-builder",
+    "@nuxt/typescript-build",
+    "@nuxt/image",
+  ],
   css: ["@/assets/css/main.css", "@/assets/css/fonts.css"],
   target: "server", // 정적 사이트로 빌드 (Vercel 배포를 위해 필요)
 
