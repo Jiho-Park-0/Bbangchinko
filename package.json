@@ -29,6 +29,7 @@
     "@nuxt/types": "^2.18.1",
     "@nuxt/typescript-build": "^3.0.2",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@nuxtjs/vercel-builder": "^0.25.0",
     "@types/node": "^22.13.10",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.57.1",

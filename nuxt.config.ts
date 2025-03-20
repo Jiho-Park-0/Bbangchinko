@@ -1,7 +1,7 @@
 export default {
   buildModules: ["@nuxt/typescript-build", "@nuxt/image"],
   css: ["@/assets/css/main.css", "@/assets/css/fonts.css"],
-  target: "static", // 정적 사이트로 빌드 (Vercel 배포를 위해 필요)
+  target: "server", // 정적 사이트로 빌드 (Vercel 배포를 위해 필요)
 
   publicRuntimeConfig: {
     baseURL: process.env.BASE_URL,
