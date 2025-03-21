@@ -67,17 +67,19 @@
     padding: 10px;
   }
 
-  img {
-    width: 150px;
-    height: 90px;
-  }
-
   .card {
     width: 100%;
   }
 
   .card:hover {
     transform: scale(var(--mobile-hover-scale));
+  }
+
+  .extraction .card img,
+  .extraction .image img,
+  .extraction nuxt-img {
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -270,9 +272,13 @@
   transform: translateZ(0);
 }
 
-/* 기본 이미지 스타일 */
-img {
+/* 기본 이미지 스타일 - 구체적인 선택자로 변경 */
+.extraction .card img,
+.extraction .image img,
+.extraction nuxt-img {
   width: 100%;
   max-width: 200px;
   height: auto;
+  aspect-ratio: 5/3;
+  object-fit: cover;
 }
