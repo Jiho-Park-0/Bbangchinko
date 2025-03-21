@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="extraction">
+    <div class="">
       <template v-if="items && items.length">
         <div
           v-for="(item, index) in items"
           :key="`${item.id}-${index}`"
-          class=""
+          class="card"
           :class="getGradeClass(item)"
           @click="openItemLink(item)"
         >
