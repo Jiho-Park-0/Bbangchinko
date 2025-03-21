@@ -8,6 +8,7 @@
             class="card"
             :class="getGradeClass(item)"
             target="_blank"
+            style="width: 200px; height: 120px"
           >
             <template v-if="item.beforeImage || item.image">
               <nuxt-img

@@ -18,9 +18,9 @@ export default {
     presets: {
       low_quality: {
         modifiers: {
-          quality: 70,
-          format: "webp",
           fit: "cover",
+          format: "webp",
+          quality: 70,
         },
       },
     },

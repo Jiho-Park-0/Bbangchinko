@@ -271,3 +271,10 @@
 
   transform: translateZ(0);
 }
+
+.fixed-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  filter: brightness(0.9) contrast(0.95);
+}
