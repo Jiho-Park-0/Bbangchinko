@@ -88,6 +88,15 @@
   object-fit: cover;
 }
 
+/* 캐러셀 스타일 강화 */
+.carousel-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  max-width: none !important; /* gacha.css의 max-width 재정의 */
+  aspect-ratio: auto !important; /* gacha.css의 aspect-ratio 재정의 */
+}
+
 .carousel-caption {
   position: absolute;
   bottom: 0;
@@ -139,6 +148,18 @@
   height: 100%;
   object-fit: cover;
   filter: brightness(0.9) contrast(0.95); /* 약간의 이미지 열화 효과 */
+}
+
+/* 단일 이미지 스타일 강화 */
+.single-image img,
+.single-image .single-image-img,
+.single-image nuxt-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  max-width: none !important;
+  aspect-ratio: auto !important;
+  filter: brightness(0.9) contrast(0.95);
 }
 
 .single-image-caption {
@@ -200,7 +221,6 @@
 }
 
 .intro-section {
-  width: 100%;
   margin-bottom: 2rem;
 
   background-color: #f9fafb;

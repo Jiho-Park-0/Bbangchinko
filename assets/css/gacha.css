@@ -56,21 +56,37 @@
 @media (max-width: 1200px) {
   .extraction {
     grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
 }
 
 @media (max-width: 768px) {
   .extraction {
     grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 10px;
   }
 
-  img {
-    width: 150px;
-    height: 90px;
+  .card {
+    width: 100%;
   }
 
   .card:hover {
     transform: scale(var(--mobile-hover-scale));
+  }
+
+  .extraction .card img,
+  .extraction .image img,
+  .extraction nuxt-img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .extraction {
+    gap: 6px;
+    padding: 8px;
   }
 }
 
@@ -256,9 +272,13 @@
   transform: translateZ(0);
 }
 
-/* 기본 이미지 스타일 */
-img {
-  width: 200px;
-  height: 120px;
+/* 기본 이미지 스타일 - 구체적인 선택자로 변경 */
+.extraction .card img,
+.extraction .image img,
+.extraction nuxt-img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  aspect-ratio: 5/3;
   object-fit: cover;
 }

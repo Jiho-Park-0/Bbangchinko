@@ -155,7 +155,7 @@ export default Vue.extend({
 
 <style src="@/assets/css/gacha.css"></style>
 
-<style>
+<style scoped>
 .loading-message {
   grid-column: 1 / -1;
   text-align: center;
