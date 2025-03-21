@@ -1,27 +1,7 @@
 <template>
   <div>
     <div class="extraction">
-      <nuxt-img
-        presets="low_quality"
-        class="gacha-image"
-        :src="`https://limbus-image-bucket.s3.ap-northeast-2.amazonaws.com/오티스/Identity/흑수 - 묘/11112_gacksung.webp`"
-        :alt="items"
-        loading="lazy"
-        format="webp"
-        width="200"
-        height="120"
-      />
       <template v-if="items && items.length">
-        <nuxt-img
-          presets="low_quality"
-          class="gacha-image"
-          :src="`https://limbus-image-bucket.s3.ap-northeast-2.amazonaws.com/오티스/Identity/흑수 - 묘/11112_gacksung.webp`"
-          :alt="items"
-          loading="lazy"
-          format="webp"
-          width="200"
-          height="120"
-        />
         <a
           v-for="(item, index) in items"
           :key="`${item.id}-${index}`"
@@ -31,6 +11,16 @@
           target="_blank"
         >
           <div class="gacha-image-container">
+            <nuxt-img
+              presets="low_quality"
+              class="gacha-image"
+              :src="`https://limbus-image-bucket.s3.ap-northeast-2.amazonaws.com/오티스/Identity/흑수 - 묘/11112_gacksung.webp`"
+              :alt="items"
+              loading="lazy"
+              format="webp"
+              width="200"
+              height="120"
+            />
             <template v-if="item.beforeImage || item.image">
               <nuxt-img
                 presets="low_quality"
