@@ -9,20 +9,22 @@
             :class="getGradeClass(item)"
             target="_blank"
           >
-            <template v-if="item.beforeImage || item.image">
-              <nuxt-img
-                preset="low_quality"
-                class="imga"
-                :src="item.beforeImage || item.image"
-                :alt="'Item ' + item.id"
-                loading="lazy"
-                format="webp"
-                width="200"
-                height="120"
-              />
-            </template>
-            <div v-else class="image-placeholder">
-              <span>이미지 준비중</span>
+            <div class="gacha-image-container">
+              <template v-if="item.beforeImage || item.image">
+                <nuxt-img
+                  preset="low_quality"
+                  class="gacha-image"
+                  :src="item.beforeImage || item.image"
+                  :alt="'Item ' + item.id"
+                  loading="lazy"
+                  format="webp"
+                  width="200"
+                  height="120"
+                />
+              </template>
+              <div v-else class="image-placeholder">
+                <span>이미지 준비중</span>
+              </div>
             </div>
           </a>
         </div>
@@ -205,6 +207,49 @@ export default Vue.extend({
   font-weight: 500;
   font-size: 16px;
   text-align: center;
+}
+
+/* 이미지 비율 강제 설정 */
+
+.gacha-image-container {
+  width: 100%;
+  height: 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+.gacha-image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .gacha-image-container {
+    width: 100%;
+    max-height: 100px;
+  }
+
+  .gacha-image {
+    width: 200px;
+    max-height: 100px;
+  }
+}
+
+@media (max-width: 400px) {
+  .gacha-image-container {
+    width: 100%;
+    max-height: 70px;
+  }
+
+  .gacha-image {
+    width: 200px;
+  }
 }
 
 /* 이미지 비율 강제 설정 */

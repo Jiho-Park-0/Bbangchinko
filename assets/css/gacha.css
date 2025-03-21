@@ -281,12 +281,6 @@
 
 /* 모바일 화면에서 이미지 크기 조정 */
 @media (max-width: 768px) {
-  .fixed-image {
-    max-width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 5/3;
-  }
-
   .card .image {
     width: 100%;
     max-width: 100%;
@@ -300,8 +294,10 @@
   }
 }
 
-@media (max-width: 480px) {
-  .fixed-image {
-    max-height: 100px !important;
+@media (max-width: 400px) {
+  .card {
+    width: 100%;
+    max-width: 150px;
+    overflow: hidden;
   }
 }
