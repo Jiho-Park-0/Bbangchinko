@@ -5,7 +5,7 @@
         <div
           v-for="(item, index) in items"
           :key="`${item.id}-${index}`"
-          class="card"
+          class=""
           :class="getGradeClass(item)"
           @click="openItemLink(item)"
         >
