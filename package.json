@@ -21,8 +21,7 @@
     "@nuxtjs/dotenv": "^1.4.2",
     "nuxt": "^2.16.0",
     "vue-lazyload": "^3.0.0",
-    "vuex-persistedstate": "^4.1.0",
-    "@nuxt/typescript-build": "^3.0.2"
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
