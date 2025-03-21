@@ -14,6 +14,11 @@
       <p class="intro-text">
         기능 및 확률은 시뮬레이터 설명칸을 참조 바랍니다.
       </p>
+      <br />
+      <p class="intro-text">
+        '빵칭코'는 추가적인 기능 업데이트는 없으며 추출리스트만 갱신할
+        예정입니다.
+      </p>
     </div>
     <div class="pickup-grid">
       <!-- 각 픽업 카드 -->

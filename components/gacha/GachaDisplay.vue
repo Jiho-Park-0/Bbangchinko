@@ -2,32 +2,31 @@
   <div>
     <div class="extraction">
       <template v-if="items && items.length">
-        <a
-          v-for="(item, index) in items"
-          :key="`${item.id}-${index}`"
-          class="card"
-          :class="getGradeClass(item)"
-          :href="getItemLink(item)"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div class="gacha-image-container">
-            <nuxt-img
-              v-if="item.beforeImage || item.image"
-              preset="low_quality"
-              class="gacha-image"
-              :src="item.beforeImage || item.image"
-              :alt="item.name || 'Character image'"
-              loading="lazy"
-              format="webp"
-              width="200"
-              height="120"
-            />
+        <div v-for="(item, index) in items" :key="`${item.id}-${index}`">
+          <a
+            :href="getItemLink(item)"
+            class="card"
+            :class="getGradeClass(item)"
+            target="_blank"
+          >
+            <template v-if="item.beforeImage || item.image">
+              <nuxt-img
+                preset="low_quality"
+                class="image gacha-card-image"
+                :src="item.beforeImage || item.image"
+                :alt="'Item ' + item.id"
+                loading="lazy"
+                format="webp"
+                width="200"
+                height="120"
+                style="filter: brightness(0.9) contrast(0.95)"
+              />
+            </template>
             <div v-else class="image-placeholder">
               <span>이미지 준비중</span>
             </div>
-          </div>
-        </a>
+          </a>
+        </div>
       </template>
       <div v-else-if="isLoading" class="loading-message">
         <div class="spinner"></div>
@@ -208,49 +207,4 @@ export default Vue.extend({
   font-size: 16px;
   text-align: center;
 }
-
-/* 이미지 비율 강제 설정 */
-
-.gacha-image-container {
-  width: 100%;
-  height: 120px;
-  position: relative;
-  overflow: hidden;
-}
-
-.gacha-image {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-}
-
-@media (max-width: 768px) {
-  .card {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  .gacha-image-container {
-    width: 100%;
-    max-height: 100px;
-  }
-
-  .gacha-image {
-    width: 200px;
-    max-height: 100px;
-  }
-}
-
-@media (max-width: 400px) {
-  .gacha-image-container {
-    width: 100%;
-    max-height: 70px;
-  }
-
-  .gacha-image {
-    width: 200px;
-  }
-}
-
-/* 이미지 비율 강제 설정 */
 </style>
