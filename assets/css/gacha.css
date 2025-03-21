@@ -282,3 +282,12 @@
   aspect-ratio: 5/3;
   object-fit: cover;
 }
+
+.gacha-card-image {
+  filter: brightness(0.9) contrast(0.95) !important;
+}
+
+:deep(.image),
+:deep(nuxt-img.image) {
+  filter: brightness(0.9) contrast(0.95) !important;
+}

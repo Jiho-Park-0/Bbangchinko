@@ -21,6 +21,11 @@ export default {
           quality: 70,
           format: "webp",
           fit: "cover",
+          // 필터 옵션을 추가하여 서버 측에서 이미지 열화를 적용
+          filters: {
+            brightness: 90, // 90%
+            contrast: 95, // 95%
+          },
         },
       },
     },
