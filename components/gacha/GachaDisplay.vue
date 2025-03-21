@@ -2,25 +2,16 @@
   <div>
     <div class="extraction">
       <template v-if="items && items.length">
-        <a
+        <div
           v-for="(item, index) in items"
           :key="`${item.id}-${index}`"
-          :href="getItemLink(item)"
           class="card"
           :class="getGradeClass(item)"
-          target="_blank"
-          ><nuxt-img
-            presets="low_quality"
-            class="gacha-image"
-            :src="item.beforeImage || item.image"
-            :alt="item.name || 'Character image'"
-            loading="lazy"
-            format="webp"
-            width="200"
-            height="120"
-          />
+          @click="openItemLink(item)"
+        >
           <div class="gacha-image-container">
             <nuxt-img
+              v-if="item.beforeImage || item.image"
               presets="low_quality"
               class="gacha-image"
               :src="item.beforeImage || item.image"
@@ -30,23 +21,11 @@
               width="200"
               height="120"
             />
-            <template v-if="item.beforeImage || item.image">
-              <nuxt-img
-                presets="low_quality"
-                class="gacha-image"
-                :src="item.beforeImage || item.image"
-                :alt="item.name || 'Character image'"
-                loading="lazy"
-                format="webp"
-                width="200"
-                height="120"
-              />
-            </template>
             <div v-else class="image-placeholder">
               <span>이미지 준비중</span>
             </div>
           </div>
-        </a>
+        </div>
       </template>
       <div v-else-if="isLoading" class="loading-message">
         <div class="spinner"></div>
@@ -158,6 +137,10 @@ export default Vue.extend({
           });
         }
       }
+    },
+    openItemLink(item: DataItem) {
+      const link = this.getItemLink(item);
+      window.open(link, "_blank");
     },
   },
   // 컴포넌트 파괴 시 메모리 정리
