@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="">
+    <div class="extraction">
       <template v-if="items && items.length">
         <div
           v-for="(item, index) in items"
