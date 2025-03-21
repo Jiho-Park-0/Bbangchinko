@@ -1,9 +1,7 @@
 [build]
-command = "npm run generate"
+command = "yarn generate" # npm 대신 yarn 사용 시
 publish = "dist"
+environment = { NODE_ENV = "production" }
 
-[build.environment]
+[context.production.environment]
 NODE_ENV = "production"
-
-[[plugins]]
-package = "@netlify/plugin-nextjs"
