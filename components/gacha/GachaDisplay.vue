@@ -2,17 +2,19 @@
   <div>
     <div class="extraction">
       <template v-if="items && items.length">
-        <div
-          v-for="item in items"
-          :key="`${item.id}`"
+        <a
+          v-for="(item, index) in items"
+          :key="`${item.id}-${index}`"
           class="card"
           :class="getGradeClass(item)"
-          @click="openItemLink(item)"
+          :href="getItemLink(item)"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <div class="gacha-image-container">
             <nuxt-img
               v-if="item.beforeImage || item.image"
-              presets="low_quality"
+              preset="low_quality"
               class="gacha-image"
               :src="item.beforeImage || item.image"
               :alt="item.name || 'Character image'"
@@ -20,12 +22,13 @@
               format="webp"
               width="200"
               height="120"
+              @load="logImage(item)"
             />
             <div v-else class="image-placeholder">
               <span>이미지 준비중</span>
             </div>
           </div>
-        </div>
+        </a>
       </template>
       <div v-else-if="isLoading" class="loading-message">
         <div class="spinner"></div>
@@ -138,9 +141,8 @@ export default Vue.extend({
         }
       }
     },
-    openItemLink(item: DataItem) {
-      const link = this.getItemLink(item);
-      window.open(link, "_blank");
+    logImage(item: DataItem) {
+      console.log("display 이미지 url:", item.beforeImage || item.image);
     },
   },
   // 컴포넌트 파괴 시 메모리 정리
