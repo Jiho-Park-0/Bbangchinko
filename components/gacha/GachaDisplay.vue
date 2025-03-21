@@ -19,7 +19,6 @@
                 format="webp"
                 width="200"
                 height="120"
-                style="object-fit: cover"
               />
             </template>
             <div v-else class="image-placeholder">

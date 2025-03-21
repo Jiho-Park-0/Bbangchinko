@@ -276,20 +276,10 @@
 .extraction .card img,
 .extraction .image img,
 .extraction nuxt-img {
-  width: 100%;
+  width: 100% !important;
   max-width: 200px;
-  height: auto;
-  aspect-ratio: 5/3;
-  object-fit: cover !important; /* !important 추가 */
-}
-
-/* 기본 이미지 스타일 - 선택자 수정 */
-.extraction .card .image,
-.extraction .card img,
-.extraction .image {
-  width: 100%;
-  max-width: 200px;
-  height: auto;
-  aspect-ratio: 5/3;
-  display: block;
+  height: auto !important;
+  aspect-ratio: 5/3 !important;
+  object-fit: cover !important;
+  filter: brightness(0.9) contrast(0.95);
 }
