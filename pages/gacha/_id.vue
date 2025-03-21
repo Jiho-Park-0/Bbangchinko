@@ -180,7 +180,6 @@ export default Vue.extend({
         this.incrementPickupCount({ id: this.id, type: "ego" });
       }
 
-      console.log({ id: result.id, grade: result.grade });
       this.randomItems = [result];
       this.increment(this.id);
 
@@ -233,8 +232,6 @@ export default Vue.extend({
           }
         }, 300 * index);
       });
-
-      console.log(results.map((item) => ({ id: item.id, grade: item.grade })));
     },
   },
 });

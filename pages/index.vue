@@ -4,8 +4,10 @@
       <h1 class="intro-title">빵칭코</h1>
       <p class="intro-text">림버스 컴퍼니 추출 시뮬레이션 '빵칭코'입니다.</p>
       <p class="intro-text">
-        현재 임시 테스트 단계입니다. 기능 및 확률은 시뮬레이터 설명칸을 참조
-        바랍니다.
+        현재 임시 테스트 단계이며, 갑작스럽게 사이트가 닫힐 수 있습니다.
+      </p>
+      <p class="intro-text">
+        기능 및 확률은 시뮬레이터 설명칸을 참조 바랍니다.
       </p>
     </div>
     <div class="pickup-grid">

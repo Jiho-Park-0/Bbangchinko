@@ -56,12 +56,15 @@
 @media (max-width: 1200px) {
   .extraction {
     grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
   }
 }
 
 @media (max-width: 768px) {
   .extraction {
     grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 10px;
   }
 
   img {
@@ -69,8 +72,19 @@
     height: 90px;
   }
 
+  .card {
+    width: 100%;
+  }
+
   .card:hover {
     transform: scale(var(--mobile-hover-scale));
+  }
+}
+
+@media (max-width: 480px) {
+  .extraction {
+    gap: 6px;
+    padding: 8px;
   }
 }
 
@@ -258,7 +272,7 @@
 
 /* 기본 이미지 스타일 */
 img {
-  width: 200px;
-  height: 120px;
-  object-fit: cover;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
 }
