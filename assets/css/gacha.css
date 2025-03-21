@@ -278,3 +278,30 @@
   object-fit: cover !important;
   filter: brightness(0.9) contrast(0.95);
 }
+
+/* 모바일 화면에서 이미지 크기 조정 */
+@media (max-width: 768px) {
+  .fixed-image {
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 5/3;
+  }
+
+  .card .image {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .grade-3 .image,
+  .ego .image {
+    margin: 0;
+    border-width: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fixed-image {
+    max-height: 100px !important;
+  }
+}

@@ -8,12 +8,11 @@
             class="card"
             :class="getGradeClass(item)"
             target="_blank"
-            style="width: 200px; height: 120px"
           >
             <template v-if="item.beforeImage || item.image">
               <nuxt-img
                 preset="low_quality"
-                class="fixed-image"
+                class="imga"
                 :src="item.beforeImage || item.image"
                 :alt="'Item ' + item.id"
                 loading="lazy"
@@ -209,19 +208,4 @@ export default Vue.extend({
 }
 
 /* 이미지 비율 강제 설정 */
-.fixed-image {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  filter: brightness(0.9) contrast(0.95);
-}
-
-.image {
-  width: 100%;
-  max-width: 200px;
-  aspect-ratio: 5/3;
-  display: block;
-  overflow: hidden;
-  filter: brightness(0.9) contrast(0.95);
-}
 </style>
