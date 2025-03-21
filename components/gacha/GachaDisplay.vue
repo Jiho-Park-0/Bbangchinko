@@ -12,7 +12,7 @@
             <template v-if="item.beforeImage || item.image">
               <nuxt-img
                 preset="low_quality"
-                class="image"
+                class="fixed-image"
                 :src="item.beforeImage || item.image"
                 :alt="'Item ' + item.id"
                 loading="lazy"
@@ -205,5 +205,22 @@ export default Vue.extend({
   font-weight: 500;
   font-size: 16px;
   text-align: center;
+}
+
+/* 이미지 비율 강제 설정 */
+.fixed-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  filter: brightness(0.9) contrast(0.95);
+}
+
+.image {
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 5/3;
+  display: block;
+  overflow: hidden;
+  filter: brightness(0.9) contrast(0.95);
 }
 </style>

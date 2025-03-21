@@ -8,7 +8,7 @@ export default {
   },
   image: {
     // 기본 provider는 'static'입니다.
-    // provider: 'static',
+    provider: "ipx",
     // 원격 이미지를 사용할 경우 whitelist에 도메인을 추가합니다.
     domains: [
       "https://limbus-image-bucket.s3.amazonaws.com",

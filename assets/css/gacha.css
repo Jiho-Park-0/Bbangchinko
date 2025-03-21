@@ -268,18 +268,6 @@
   z-index: 1;
   box-sizing: border-box;
   margin: 0;
-  padding: 4px;
-  transform: translateZ(0);
-}
 
-/* 기본 이미지 스타일 - 구체적인 선택자로 변경 */
-.extraction .card img,
-.extraction .image img,
-.extraction nuxt-img {
-  width: 100% !important;
-  max-width: 200px;
-  height: auto !important;
-  aspect-ratio: 5/3 !important;
-  object-fit: cover !important;
-  filter: brightness(0.9) contrast(0.95);
+  transform: translateZ(0);
 }
