@@ -26,7 +26,7 @@
                 presets="low_quality"
                 class="gacha-image"
                 :src="item.beforeImage || item.image"
-                :alt="'Item ' + item.id"
+                :alt="item.name || 'Character image'"
                 loading="lazy"
                 format="webp"
                 width="200"
