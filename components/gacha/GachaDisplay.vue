@@ -2,32 +2,32 @@
   <div>
     <div class="extraction">
       <template v-if="items && items.length">
-        <div v-for="(item, index) in items" :key="`${item.id}-${index}`">
-          <a
-            :href="getItemLink(item)"
-            class="card"
-            :class="getGradeClass(item)"
-            target="_blank"
-          >
-            <div class="gacha-image-container">
-              <template v-if="item.beforeImage || item.image">
-                <nuxt-img
-                  preset="low_quality"
-                  class="gacha-image"
-                  :src="item.beforeImage || item.image"
-                  :alt="'Item ' + item.id"
-                  loading="lazy"
-                  format="webp"
-                  width="200"
-                  height="120"
-                />
-              </template>
-              <div v-else class="image-placeholder">
-                <span>이미지 준비중</span>
-              </div>
+        <a
+          v-for="(item, index) in items"
+          :key="`${item.id}-${index}`"
+          :href="getItemLink(item)"
+          class="card"
+          :class="getGradeClass(item)"
+          target="_blank"
+        >
+          <div class="gacha-image-container">
+            <template v-if="item.beforeImage || item.image">
+              <nuxt-img
+                preset="low_quality"
+                class="gacha-image"
+                :src="item.beforeImage || item.image"
+                :alt="'Item ' + item.id"
+                loading="lazy"
+                format="webp"
+                width="200"
+                height="120"
+              />
+            </template>
+            <div v-else class="image-placeholder">
+              <span>이미지 준비중</span>
             </div>
-          </a>
-        </div>
+          </div>
+        </a>
       </template>
       <div v-else-if="isLoading" class="loading-message">
         <div class="spinner"></div>
