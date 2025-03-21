@@ -12,11 +12,13 @@
         >
           <div class="gacha-image-container">
             <template v-if="item.beforeImage || item.image">
-              <img
+              <nuxt-img
+                presets="low_quality"
                 class="gacha-image"
                 :src="item.beforeImage || item.image"
                 :alt="'Item ' + item.id"
                 loading="lazy"
+                format="webp"
                 width="200"
                 height="120"
               />
