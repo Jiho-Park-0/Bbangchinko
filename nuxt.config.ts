@@ -3,6 +3,18 @@ export default {
   css: ["@/assets/css/main.css", "@/assets/css/fonts.css"],
   target: "static",
 
+  build: {
+    transpile: ["unicorn-magic"],
+    // webpack 설정 직접 수정
+    extend(config: { resolve?: { alias?: { [key: string]: string } } }) {
+      if (config.resolve && config.resolve.alias) {
+        // webpack에서 직접 별칭 설정
+        config.resolve.alias["unicorn-magic"] =
+          "unicorn-magic/dist/unicorn-magic.cjs.js";
+      }
+    },
+  },
+
   publicRuntimeConfig: {
     baseURL: process.env.BASE_URL,
   },
