@@ -12,15 +12,14 @@
           ><nuxt-img
             presets="low_quality"
             class="gacha-image"
-            :src="`https://limbus-image-bucket.s3.ap-northeast-2.amazonaws.com/오티스/Identity/흑수 - 묘/11112_gacksung.webp`"
+            :src="item.beforeImage || item.image"
             :alt="item.name || 'Character image'"
             loading="lazy"
             format="webp"
             width="200"
             height="120"
           />
-          <!-- <div class="gacha-image-container"> -->
-          <template v-if="item.beforeImage || item.image">
+          <div class="gacha-image-container">
             <nuxt-img
               presets="low_quality"
               class="gacha-image"
@@ -31,11 +30,22 @@
               width="200"
               height="120"
             />
-          </template>
-          <div v-else class="image-placeholder">
-            <span>이미지 준비중</span>
+            <template v-if="item.beforeImage || item.image">
+              <nuxt-img
+                presets="low_quality"
+                class="gacha-image"
+                :src="item.beforeImage || item.image"
+                :alt="item.name || 'Character image'"
+                loading="lazy"
+                format="webp"
+                width="200"
+                height="120"
+              />
+            </template>
+            <div v-else class="image-placeholder">
+              <span>이미지 준비중</span>
+            </div>
           </div>
-          <!-- </div> -->
         </a>
       </template>
       <div v-else-if="isLoading" class="loading-message">
