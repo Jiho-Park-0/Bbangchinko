@@ -1,0 +1,10 @@
+[build]
+  command = "npm run generate"         # Nuxt 정적 사이트 생성 명령어 (필요에 따라 "yarn generate" 등으로 변경)
+  publish = "dist"                       # 정적 파일이 생성되는 폴더 (프로젝트 설정에 맞게 조정)
+  functions = "netlify/functions"        # Netlify Functions가 위치하는 폴더
+
+[[redirects]]
+  from = "/_ipx/*"                       # IPX 요청 경로
+  to = "/.netlify/functions/ipx/:splat"   # 해당 경로를 ipx 함수로 포워딩 (functions/ipx.js 또는 ipx.ts 파일 구현 필요)
+  status = 200                           # 리다이렉트 상태 (프록시 역할)
+  force = true                           # 강제 적용
