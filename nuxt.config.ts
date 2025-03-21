@@ -7,6 +7,8 @@ export default {
     baseURL: process.env.BASE_URL,
   },
   image: {
+    provider: "static", // 명시적으로 static provider 지정
+    staticFilename: "[publicPath]/image/[name]-[hash][ext]",
     // 기본 provider는 'static'입니다.
     // provider: 'static',
     // 원격 이미지를 사용할 경우 whitelist에 도메인을 추가합니다.
@@ -21,11 +23,9 @@ export default {
           quality: 70,
           format: "webp",
           fit: "cover",
-          // 필터 옵션을 추가하여 서버 측에서 이미지 열화를 적용
-          filters: {
-            brightness: 90, // 90%
-            contrast: 95, // 95%
-          },
+          // 필터 올바른 형식으로 수정
+          brightness: 0.9, // 90% -> 0.9
+          contrast: 0.95, // 95% -> 0.95
         },
       },
     },

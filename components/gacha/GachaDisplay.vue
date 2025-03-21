@@ -19,7 +19,6 @@
                 format="webp"
                 width="200"
                 height="120"
-                style="filter: brightness(0.9) contrast(0.95)"
               />
             </template>
             <div v-else class="image-placeholder">
