@@ -22,7 +22,6 @@
               format="webp"
               width="200"
               height="120"
-              @load="logImage(item)"
             />
             <div v-else class="image-placeholder">
               <span>이미지 준비중</span>
@@ -140,9 +139,6 @@ export default Vue.extend({
           });
         }
       }
-    },
-    logImage(item: DataItem) {
-      console.log("display 이미지 url:", item.beforeImage || item.image);
     },
   },
   // 컴포넌트 파괴 시 메모리 정리

@@ -26,7 +26,6 @@
                   format="webp"
                   width="200"
                   height="120"
-                  @load="logImage(item)"
                 />
               </template>
               <div v-else class="image-placeholder">
@@ -65,7 +64,6 @@
                   format="webp"
                   width="200"
                   height="120"
-                  @load="logImage(item)"
                 />
               </template>
               <div v-else class="image-placeholder">
@@ -114,9 +112,6 @@ export default Vue.extend({
     },
   },
   methods: {
-    logImage(item: DataItem) {
-      console.log("display 이미지 url:", item.name);
-    },
     getItemLink(item: DataItem) {
       return item.type === "identity"
         ? `https://baslimbus.info/identity/${item.id}`
