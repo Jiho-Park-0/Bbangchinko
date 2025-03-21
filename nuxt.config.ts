@@ -23,9 +23,6 @@ export default {
           quality: 70,
           format: "webp",
           fit: "cover",
-          // 필터 올바른 형식으로 수정
-          brightness: 0.9, // 90% -> 0.9
-          contrast: 0.95, // 95% -> 0.95
         },
       },
     },
