@@ -12,13 +12,14 @@
             <template v-if="item.beforeImage || item.image">
               <nuxt-img
                 preset="low_quality"
-                class="image"
+                class="image gacha-card-image"
                 :src="item.beforeImage || item.image"
                 :alt="'Item ' + item.id"
                 loading="lazy"
                 format="webp"
                 width="200"
                 height="120"
+                style="filter: brightness(0.9) contrast(0.95)"
               />
             </template>
             <div v-else class="image-placeholder">
