@@ -2,25 +2,50 @@
   <div class="home-container">
     <div class="intro-section">
       <h1 class="intro-title">빵칭코</h1>
-      <p class="intro-text">
-        기능 수정으로 잠시 비활성화 하도록 하겠습니다. 빠르게 수정하도록
-        하겠습니다.
-      </p>
-      <p class="intro-text">- 홍루 픽업에서 특정 픽업이 나오지 않는 문제</p>
-      <p class="intro-text">- 뽑기 이미지 제거</p>
-      <!-- <p class="intro-text">림버스 컴퍼니 추출 시뮬레이션 '빵칭코'입니다.</p>
+      <div class="intro-toggle-container">
+        <div class="intro-toggle" @click="toggleNotice">
+          {{ isNoticeExpanded ? "공지사항 접기 ▲" : "공지사항 펼치기 ▼" }}
+        </div>
 
-      <p class="intro-text">
-        현재 임시 테스트 단계이며, 갑작스럽게 사이트가 닫힐 수 있습니다.
-      </p>
-      <p class="intro-text">
-        기능 및 확률은 시뮬레이터 설명칸을 참조 바랍니다.
-      </p>
-      
-      <p class="intro-text">
-        '빵칭코'는 추가적인 기능 업데이트는 없으며 추출리스트만 갱신할
-        예정입니다.
-      </p> -->
+        <div class="intro-content" :class="{ expanded: isNoticeExpanded }">
+          <p class="intro-text">안녕하세요. 단빵숲 입니다.</p>
+          <p class="intro-text">
+            여태까지 '빵칭코'의 추출에서는 동기화 전 일러스트가 출력되었습니다.
+          </p>
+          <p class="intro-text">
+            그러나 이제부터는 일러스트 대신 각 데이터의 텍스트와 등급이
+            표시되도록 변경되었습니다.
+          </p>
+          <br />
+          <p class="intro-text">
+            많은 분들이 이용해 주신 덕분에 정말 감사한 마음뿐이지만, 서버의
+            이미지 사용량이 과도하게 증가하여 부득이하게 텍스트 출력 방식으로
+            조정하게 되었습니다.
+          </p>
+          <p class="intro-text">
+            갑작스러운 변경으로 불편을 끼쳐 드려 죄송하며, 앞으로도 많은 관심과
+            이용 부탁드립니다. 감사합니다.
+          </p>
+          <br />
+          <p class="intro-text">
+            추가적으로 이전 개발 테스트 추출에 많은 관심을 주셔서 임의
+            발부르기스의 밤 추출을 추가하였습니다.
+          </p>
+          <!-- <p class="intro-text">림버스 컴퍼니 추출 시뮬레이션 '빵칭코'입니다.</p>
+
+          <p class="intro-text">
+            현재 임시 테스트 단계이며, 갑작스럽게 사이트가 닫힐 수 있습니다.
+          </p>
+          <p class="intro-text">
+            기능 및 확률은 시뮬레이터 설명칸을 참조 바랍니다.
+          </p>
+          
+          <p class="intro-text">
+            '빵칭코'는 추가적인 기능 업데이트는 없으며 추출리스트만 갱신할
+            예정입니다.
+          </p> -->
+        </div>
+      </div>
     </div>
     <div class="pickup-grid">
       <!-- 각 픽업 카드 -->
@@ -83,13 +108,13 @@ export default Vue.extend({
   data() {
     return {
       allData: [] as DataItem[],
-      // 픽업 제목 배열 추가
       pickupTitles: {
         "1": "심야청소 - 신규 인격 특정 추출",
         "2": "특정 추출 - 홍루",
         "3": "상시 추출",
-        "4": "개발 테스트 추출",
+        "4": "발푸르기스의 밤 추출",
       } as { [key: string]: string },
+      isNoticeExpanded: false, // 토글 상태 추가 (기본값: 접힘)
     };
   },
 
@@ -143,6 +168,11 @@ export default Vue.extend({
     getPickupTitle(id: number): string {
       return this.pickupTitles[id.toString()] || `픽업 ${id}`;
     },
+
+    // 토글 메서드 추가
+    toggleNotice() {
+      this.isNoticeExpanded = !this.isNoticeExpanded;
+    },
   },
 
   async fetch() {
@@ -176,3 +206,38 @@ export default Vue.extend({
 </script>
 
 <style scoped src="@/assets/css/home.css"></style>
+
+<style scoped>
+/* 기존 스타일은 유지 */
+
+.intro-toggle-container {
+  margin: 20px 0;
+}
+
+.intro-toggle {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
+}
+
+.intro-toggle:hover {
+  background-color: #e0e0e0;
+}
+
+.intro-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.intro-content.expanded {
+  max-height: 500px; /* 충분히 큰 값으로 설정 */
+  margin-top: 15px;
+  padding: 0 50px;
+}
+</style>

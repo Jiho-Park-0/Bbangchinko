@@ -118,10 +118,13 @@ export default Vue.extend({
       );
     },
     currentEgoIncludedIds(): number[] {
-      return (
+      const baseIds =
         this.$store.state.pickupConfig?.[this.id]?.egoIncludedIds ||
-        this.defaultEgoIncludedIds
-      );
+        this.defaultEgoIncludedIds;
+      const pickupIds = this.currentEgoPickups;
+
+      // 픽업 ID가 포함되지 않았다면 자동으로 추가
+      return [...new Set([...baseIds, ...pickupIds])];
     },
     gachaHandler(): GachaHandler {
       return new GachaHandler(
@@ -167,6 +170,7 @@ export default Vue.extend({
 
   mounted() {
     this.$store.dispatch("checkExpiration");
+    console.log("EGO Included IDs:", this.currentEgoIncludedIds);
   },
 
   methods: {
