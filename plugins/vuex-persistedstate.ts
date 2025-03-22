@@ -4,7 +4,8 @@ import { Store } from "vuex";
 export default ({ store }: { store: Store<any> }) => {
   createPersistedState({
     key: "bbangchinko-state",
-    paths: ["lastUpdated", "idealValues", "pickupCounts", "rareItems"], // rareItems 추가
+    // pickupConfig는 저장하지 않고 하드코딩된 값 유지
+    paths: ["lastUpdated", "idealValues", "pickupCounts", "rareItems"],
     storage: window.localStorage,
   })(store);
 

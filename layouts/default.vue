@@ -4,7 +4,7 @@
     <Header />
     <main>
       <div class="content-wrapper">
-        <Nuxt />
+        <Nuxt keep-alive />
       </div>
     </main>
     <Footer />

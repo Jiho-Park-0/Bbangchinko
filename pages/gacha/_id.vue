@@ -61,11 +61,12 @@ export default Vue.extend({
       url: "",
       allData: [] as DataItem[],
       randomItems: [] as DataItem[],
-      identityExcludedIds: [
+      // 기본 제외/포함 목록 (config에 없을 경우 사용)
+      defaultIdentityExcludedIds: [
         13, 34, 83, 84, 103, 119, 120, 131, 132, 116, 117, 110, 111, 80, 53, 41,
         74, 90, 17, 65, 140, 133,
       ] as number[],
-      egoIncludedIds: [
+      defaultEgoIncludedIds: [
         79, 61, 58, 90, 96, 8, 3, 47, 95, 30, 21, 17, 91, 92, 25, 43, 52, 56, 6,
         60, 46, 63, 80, 83, 35, 11, 65,
       ] as number[],
@@ -106,11 +107,27 @@ export default Vue.extend({
           item.type === "ego" && this.currentEgoPickups.includes(item.id)
       );
     },
+    // 픽업별 제외/포함 목록을 가져오는 computed 속성 추가
+    currentIdentityExcludedIds(): number[] {
+      // 픽업에 포함된 ID는 제외 목록에서 필터링
+      const baseExcluded =
+        this.$store.state.pickupConfig?.[this.id]?.identityExcludedIds ||
+        this.defaultIdentityExcludedIds;
+      return baseExcluded.filter(
+        (id: number): boolean => !this.currentIdentityPickups.includes(id)
+      );
+    },
+    currentEgoIncludedIds(): number[] {
+      return (
+        this.$store.state.pickupConfig?.[this.id]?.egoIncludedIds ||
+        this.defaultEgoIncludedIds
+      );
+    },
     gachaHandler(): GachaHandler {
       return new GachaHandler(
         this.allData,
-        this.identityExcludedIds,
-        this.egoIncludedIds,
+        this.currentIdentityExcludedIds, // 픽업별 제외 목록 사용
+        this.currentEgoIncludedIds, // 픽업별 포함 목록 사용
         this.currentIdentityPickups,
         this.currentEgoPickups
       );
