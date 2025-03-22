@@ -3,9 +3,11 @@
     <div class="intro-section">
       <h1 class="intro-title">빵칭코</h1>
       <p class="intro-text">
-        오늘 오후 7시부터 기능 수정으로 잠시 비활성화 하도록 하겠습니다. 양해
-        부탁드립니다.
+        기능 수정으로 잠시 비활성화 하도록 하겠습니다. 빠르게 수정하도록
+        하겠습니다.
       </p>
+      <p class="intro-text">- 홍루 픽업에서 특정 픽업이 나오지 않는 문제</p>
+      <p class="intro-text">- 뽑기 이미지 제거</p>
       <!-- <p class="intro-text">림버스 컴퍼니 추출 시뮬레이션 '빵칭코'입니다.</p>
 
       <p class="intro-text">
