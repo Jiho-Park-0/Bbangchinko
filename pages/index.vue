@@ -2,11 +2,11 @@
   <div class="home-container">
     <div class="intro-section">
       <h1 class="intro-title">빵칭코</h1>
-      <!-- <p class="intro-text">
-        서버 이미지 관련 문제가 생겨 잠시 비활성화 하도록 하겠습니다. 양해
+      <p class="intro-text">
+        오늘 오후 7시부터 기능 수정으로 잠시 비활성화 하도록 하겠습니다. 양해
         부탁드립니다.
-      </p> -->
-      <p class="intro-text">림버스 컴퍼니 추출 시뮬레이션 '빵칭코'입니다.</p>
+      </p>
+      <!-- <p class="intro-text">림버스 컴퍼니 추출 시뮬레이션 '빵칭코'입니다.</p>
 
       <p class="intro-text">
         현재 임시 테스트 단계이며, 갑작스럽게 사이트가 닫힐 수 있습니다.
@@ -14,11 +14,11 @@
       <p class="intro-text">
         기능 및 확률은 시뮬레이터 설명칸을 참조 바랍니다.
       </p>
-      <br />
+      
       <p class="intro-text">
         '빵칭코'는 추가적인 기능 업데이트는 없으며 추출리스트만 갱신할
         예정입니다.
-      </p>
+      </p> -->
     </div>
     <div class="pickup-grid">
       <!-- 각 픽업 카드 -->
