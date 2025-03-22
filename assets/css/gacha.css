@@ -316,19 +316,22 @@
 @media (max-width: 768px) {
   .extraction {
     justify-content: space-around;
+    grid-template-columns: repeat(2, 1fr); /* 2열 고정 레이아웃으로 변경 */
+    grid-auto-rows: auto; /* 자동 높이 조정 */
     gap: 10px;
     padding: 10px;
   }
 
   /* 모바일에서도 고정된 크기 유지 */
   .extraction > div {
-    width: 160px;
+    width: 90%; /* 부모 그리드 셀에 맞춰 너비 100% */
+    height: 130px;
     margin-bottom: 10px;
   }
 
   /* 카드 콘텐츠 크기 조정 */
   .card-content {
-    height: 120px;
+    height: 100px;
     padding: 10px;
   }
 
@@ -357,16 +360,32 @@
 
 /* 매우 작은 화면용 추가 조정 */
 @media (max-width: 400px) {
+  .extraction {
+    grid-template-columns: repeat(2, 1fr); /* 작은 화면에서도 2열 유지 */
+    gap: 8px;
+  }
+
   .extraction > div {
-    width: 140px;
+    height: 120px;
   }
 
   .card-content {
-    height: 110px;
+    height: 100px;
+    padding: 6px;
   }
 
   .item-name {
     -webkit-line-clamp: 2;
-    font-size: 12px;
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
+
+  .item-character {
+    font-size: 10px;
+  }
+
+  .grade-badge {
+    width: 28px;
+    height: 28px;
   }
 }
