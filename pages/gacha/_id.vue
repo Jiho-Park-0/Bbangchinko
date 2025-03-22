@@ -168,11 +168,6 @@ export default Vue.extend({
     }
   },
 
-  mounted() {
-    this.$store.dispatch("checkExpiration");
-    console.log("EGO Included IDs:", this.currentEgoIncludedIds);
-  },
-
   methods: {
     ...mapMutations(["increment", "incrementTen", "incrementPickupCount"]),
 
