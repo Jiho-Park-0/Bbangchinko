@@ -2,7 +2,7 @@
   <div class="home-container">
     <div class="intro-section">
       <h1 class="intro-title">빵칭코</h1>
-      <div class="intro-toggle-container">
+      <!-- <div class="intro-toggle-container">
         <div class="intro-toggle" @click="toggleNotice">
           {{ isNoticeExpanded ? "공지사항 접기 ▲" : "공지사항 펼치기 ▼" }}
         </div>
@@ -31,21 +31,9 @@
             추가적으로 이전 개발 테스트 추출에 많은 관심을 주셔서 임의
             발부르기스의 밤 추출을 추가하였습니다.
           </p>
-          <!-- <p class="intro-text">림버스 컴퍼니 추출 시뮬레이션 '빵칭코'입니다.</p>
-
-          <p class="intro-text">
-            현재 임시 테스트 단계이며, 갑작스럽게 사이트가 닫힐 수 있습니다.
-          </p>
-          <p class="intro-text">
-            기능 및 확률은 시뮬레이터 설명칸을 참조 바랍니다.
-          </p>
-          
-          <p class="intro-text">
-            '빵칭코'는 추가적인 기능 업데이트는 없으며 추출리스트만 갱신할
-            예정입니다.
-          </p> -->
+         
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="pickup-grid">
       <!-- 각 픽업 카드 -->
