@@ -7,6 +7,10 @@ export default {
     baseURL: process.env.BASE_URL,
   },
   image: {
+    // 캐싱 활성화
+    cache: true,
+    // 캐싱 디렉토리 설정 (기본값: `.nuxt/image-cache`)
+    dir: "static/image-cache",
     // 기본 provider는 'static'입니다.
     provider: "static",
     // 원격 이미지를 사용할 경우 whitelist에 도메인을 추가합니다.
