@@ -11,7 +11,7 @@
               items[items.length - 1].image
             "
           >
-            <nuxt-img
+            <img
               preset="low_quality"
               class="carousel-image"
               :src="
@@ -39,7 +39,7 @@
         <!-- 실제 슬라이드들 -->
         <div v-for="(item, index) in items" :key="index" class="carousel-item">
           <template v-if="item.beforeImage || item.image">
-            <nuxt-img
+            <img
               preset="low_quality"
               class="carousel-image"
               :src="item.beforeImage || item.image"
