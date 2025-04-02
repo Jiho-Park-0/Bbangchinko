@@ -20,6 +20,7 @@
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/composition-api": "^0.34.0",
     "@nuxtjs/dotenv": "^1.4.2",
+    "@nuxtjs/pwa": "^3.3.5",
     "nuxt": "^2.16.0",
     "vue-lazyload": "^3.0.0",
     "vuex-persistedstate": "^4.1.0"
@@ -30,6 +31,7 @@
     "@nuxt/typescript-build": "^3.0.2",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@types/node": "^22.13.10",
+    "@types/workbox-strategies": "^5.0.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.57.1",
     "eslint-plugin-nuxt": "^4.0.0",

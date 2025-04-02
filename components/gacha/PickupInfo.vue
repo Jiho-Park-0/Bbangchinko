@@ -17,7 +17,7 @@
           >
             <div class="pickup-image-container">
               <template v-if="item.beforeImage || item.image">
-                <nuxt-img
+                <img
                   preset="low_quality"
                   class="pickup-image"
                   :src="item.beforeImage || item.image"
@@ -55,8 +55,7 @@
           >
             <div class="pickup-image-container">
               <template v-if="item.beforeImage || item.image">
-                <nuxt-img
-                  preset="low_quality"
+                <img
                   class="pickup-image"
                   :src="item.beforeImage || item.image"
                   :alt="item.name"

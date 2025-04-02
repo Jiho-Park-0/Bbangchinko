@@ -13,7 +13,9 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_image_0fb9328e from 'nuxt_plugin_image_0fb9328e' // Source: .\\image.js (mode: 'all')
+import nuxt_plugin_axios_0d1c69be from 'nuxt_plugin_axios_0d1c69be' // Source: .\\axios.js (mode: 'all')
+import nuxt_plugin_workbox_8d0d314c from 'nuxt_plugin_workbox_8d0d314c' // Source: .\\workbox.js (mode: 'client')
+import nuxt_plugin_metaplugin_661c61da from 'nuxt_plugin_metaplugin_661c61da' // Source: .\\pwa\\meta.plugin.js (mode: 'all')
 import nuxt_plugin_vuelazyload_211b2937 from 'nuxt_plugin_vuelazyload_211b2937' // Source: ..\\plugins\\vue-lazyload (mode: 'client')
 import nuxt_plugin_vuexpersistedstate_072cbd0a from 'nuxt_plugin_vuexpersistedstate_072cbd0a' // Source: ..\\plugins\\vuex-persistedstate.ts (mode: 'client')
 
@@ -83,7 +85,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"빵칭코 - 추출 시뮬레이터","titleTemplate":"%s - 빵칭코","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"script":[{"src":"https:\u002F\u002Fwww.googletagmanager.com\u002Fgtag\u002Fjs?id=G-PJP633HKE0","async":true},{"hid":"ga-script","innerHTML":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){ dataLayer.push(arguments); }\n          gtag('js', new Date());\n          gtag('config', 'G-PJP633HKE0');\n        ","type":"text\u002Fjavascript","charset":"utf-8"}],"__dangerouslyDisableSanitizers":["script"],"style":[]},
+    head: {"meta":[],"link":[],"style":[],"script":[]},
 
     store,
     router,
@@ -215,8 +217,16 @@ async function createApp(ssrContext, config = {}) {
   }
   // Plugin execution
 
-  if (typeof nuxt_plugin_image_0fb9328e === 'function') {
-    await nuxt_plugin_image_0fb9328e(app.context, inject)
+  if (typeof nuxt_plugin_axios_0d1c69be === 'function') {
+    await nuxt_plugin_axios_0d1c69be(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_workbox_8d0d314c === 'function') {
+    await nuxt_plugin_workbox_8d0d314c(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_metaplugin_661c61da === 'function') {
+    await nuxt_plugin_metaplugin_661c61da(app.context, inject)
   }
 
   if (process.client && typeof nuxt_plugin_vuelazyload_211b2937 === 'function') {

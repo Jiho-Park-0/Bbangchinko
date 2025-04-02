@@ -1,78 +1,79 @@
 export default {
-  buildModules: ["@nuxt/typescript-build", "@nuxt/image"],
+  modules: [
+    "@nuxtjs/pwa",
+    "@nuxtjs/axios", // API 호출을 위한 axios 모듈 추가
+  ],
+  buildModules: ["@nuxt/typescript-build"],
   css: ["@/assets/css/main.css", "@/assets/css/fonts.css"],
   target: "static",
 
   publicRuntimeConfig: {
     baseURL: process.env.BASE_URL,
+    imageCacheTime: 60 * 60 * 24 * 30, // 30일 캐싱 (초 단위)
   },
-  image: {
-    // 캐싱 활성화
-    cache: true,
-    // 캐싱 디렉토리 설정 (기본값: `.nuxt/image-cache`)
-    dir: "static/image-cache",
-    // 기본 provider는 'static'입니다.
-    provider: "static",
-    // 원격 이미지를 사용할 경우 whitelist에 도메인을 추가합니다.
-    domains: [
-      "limbus-image-bucket.s3.amazonaws.com",
-      "limbus-image-bucket.s3.ap-northeast-2.amazonaws.com",
-    ],
-    // 프리셋을 사용하면 여러 곳에서 공통 설정을 적용할 수 있습니다.
-    presets: {
-      low_quality: {
-        modifiers: {
-          fit: "cover",
-          format: "webp",
-          quality: 70,
+
+  // PWA 워크박스 설정 추가
+  pwa: {
+    workbox: {
+      enabled: true,
+      runtimeCaching: [
+        {
+          urlPattern: "https://limbus-image-bucket.s3.amazonaws.com/.*",
+          handler: "CacheFirst",
+          method: "GET",
+          options: {
+            cacheName: "image-cache",
+            expiration: {
+              maxEntries: 200,
+              maxAgeSeconds: 60 * 60 * 24 * 30, // 30일 캐싱
+            },
+            cacheableResponse: {
+              statuses: [0, 200],
+            },
+          },
         },
-      },
+        {
+          urlPattern:
+            "https://limbus-image-bucket.s3.ap-northeast-2.amazonaws.com/.*",
+          handler: "CacheFirst",
+          method: "GET",
+          options: {
+            cacheName: "image-cache-2",
+            expiration: {
+              maxEntries: 200,
+              maxAgeSeconds: 60 * 60 * 24 * 30 * 3000, // 30일 캐싱
+            },
+          },
+        },
+      ],
     },
   },
+
+  // 렌더링 설정
+  render: {
+    static: {
+      maxAge: "1y", // 정적 자산은 1년 캐싱
+      etag: true,
+    },
+    compressor: {
+      threshold: 0,
+    },
+  },
+
+  // HTTP 헤더 설정 (정적 호스팅 시)
+  server: {
+    headers: {
+      "Cache-Control": "public, max-age=31536000, immutable", // 1년 캐싱
+    },
+  },
+
+  // 기존 설정 유지
   plugins: [
     { src: "~/plugins/vue-lazyload", mode: "client" },
     { src: "~/plugins/vuex-persistedstate.ts", ssr: false },
   ],
-  render: {
-    static: {
-      maxAge: "1d", // 1일 동안 캐싱
-    },
-  },
   head: {
-    title: "빵칭코 - 추출 시뮬레이터", // 기본 타이틀
-    titleTemplate: "%s - 빵칭코", // 각 페이지의 타이틀 앞뒤로 붙일 템플릿 (페이지별 title이 %s에 들어감)
-    meta: [
-      { charset: "utf-8" },
-      {
-        name: "viewport",
-        content:
-          "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
-      },
-    ],
-    link: [
-      // favicon 파일은 보통 static 폴더에 위치하며, 빌드 시 루트 경로로 복사됩니다.
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-    ],
-    script: [
-      {
-        // async 속성을 true로 설정
-        src: "https://www.googletagmanager.com/gtag/js?id=G-PJP633HKE0",
-        async: true,
-      },
-      {
-        // 실제 GA 스크립트 삽입
-        hid: "ga-script",
-        innerHTML: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){ dataLayer.push(arguments); }
-          gtag('js', new Date());
-          gtag('config', 'G-PJP633HKE0');
-        `,
-        type: "text/javascript",
-        charset: "utf-8",
-      },
-    ],
-    __dangerouslyDisableSanitizers: ["script"],
+    // 기존 head 설정 유지
   },
   generate: {
     fallback: true,

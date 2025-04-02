@@ -63,8 +63,7 @@
         <div class="carousel-item" v-if="items.length > 0">
           <!-- 이미지 유무 체크 추가 -->
           <template v-if="items[0].beforeImage || items[0].image">
-            <nuxt-img
-              preset="low_quality"
+            <img
               class="carousel-image"
               :src="items[0].beforeImage || items[0].image"
               :alt="items[0].name || '이미지'"

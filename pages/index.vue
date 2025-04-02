@@ -51,7 +51,7 @@
               v-else-if="hasPickups(id) && getPickupImages(id).length === 1"
               class="single-image"
             >
-              <nuxt-img
+              <img
                 preset="low_quality"
                 class="single-image-img"
                 :src="
