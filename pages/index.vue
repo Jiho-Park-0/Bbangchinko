@@ -66,7 +66,7 @@ export default Vue.extend({
     return {
       allData: [] as DataItem[],
       pickupTitles: {
-        "1": "심야청소 - 신규 인격 특정 추출",
+        "1": "신규 인격 특정 추출",
         "2": "특정 추출 - 돈키호테",
         "3": "상시 추출",
       } as { [key: string]: string },
