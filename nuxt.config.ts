@@ -1,6 +1,5 @@
 export default {
   modules: [
-    "@nuxtjs/pwa",
     "@nuxtjs/axios", // API 호출을 위한 axios 모듈 추가
   ],
   buildModules: ["@nuxt/typescript-build"],

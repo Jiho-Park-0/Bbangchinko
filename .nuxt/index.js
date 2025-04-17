@@ -14,8 +14,6 @@ import { createStore } from './store.js'
 /* Plugins */
 
 import nuxt_plugin_axios_0d1c69be from 'nuxt_plugin_axios_0d1c69be' // Source: .\\axios.js (mode: 'all')
-import nuxt_plugin_workbox_8d0d314c from 'nuxt_plugin_workbox_8d0d314c' // Source: .\\workbox.js (mode: 'client')
-import nuxt_plugin_metaplugin_661c61da from 'nuxt_plugin_metaplugin_661c61da' // Source: .\\pwa\\meta.plugin.js (mode: 'all')
 import nuxt_plugin_vuelazyload_211b2937 from 'nuxt_plugin_vuelazyload_211b2937' // Source: ..\\plugins\\vue-lazyload (mode: 'client')
 import nuxt_plugin_vuexpersistedstate_072cbd0a from 'nuxt_plugin_vuexpersistedstate_072cbd0a' // Source: ..\\plugins\\vuex-persistedstate.ts (mode: 'client')
 
@@ -219,14 +217,6 @@ async function createApp(ssrContext, config = {}) {
 
   if (typeof nuxt_plugin_axios_0d1c69be === 'function') {
     await nuxt_plugin_axios_0d1c69be(app.context, inject)
-  }
-
-  if (process.client && typeof nuxt_plugin_workbox_8d0d314c === 'function') {
-    await nuxt_plugin_workbox_8d0d314c(app.context, inject)
-  }
-
-  if (typeof nuxt_plugin_metaplugin_661c61da === 'function') {
-    await nuxt_plugin_metaplugin_661c61da(app.context, inject)
   }
 
   if (process.client && typeof nuxt_plugin_vuelazyload_211b2937 === 'function') {
