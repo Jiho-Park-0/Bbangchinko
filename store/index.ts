@@ -3,8 +3,8 @@ export const state = () => ({
   // 픽업 ID 목록은 하드코딩
   pickupConfig: {
     1: {
-      identity: [],
-      ego: [97],
+      identity: [143],
+      ego: [],
       // 픽업별 제외/포함 목록 추가
       identityExcludedIds: [
         13, 34, 83, 84, 103, 119, 120, 131, 132, 116, 117, 110, 111, 80, 53, 41,
